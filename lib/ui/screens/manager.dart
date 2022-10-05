@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:livestockapp/ui/widgets/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:livestockapp/ui/screens/screens.dart';
 import 'package:get/get.dart';
-import 'package:livestockapp/constants/constants.dart';
-import 'package:livestockapp/pages/profile_page.dart';
-import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import '../screens/Cattle/addCattle.dart';
+import '../screens/Milk/addMilk.dart';
+import '../screens/Events/addEvent.dart';
+import '../screens/Settings/settings.dart';
 
 class ManagerScreen extends StatefulWidget {
   const ManagerScreen({Key? key}) : super(key: key);
@@ -211,7 +210,13 @@ class _ManagerScreenState extends State<ManagerScreen> {
                     Icons.settings,
                     color: Colors.yellow,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(
+                      () => Cattle(),
+                      fullscreenDialog: true,
+                      transition: Transition.zoom,
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 20,
@@ -225,49 +230,59 @@ class _ManagerScreenState extends State<ManagerScreen> {
               ],
             )),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 4,
-                  offset: Offset(4, 8), // Shadow position
-                ),
-              ],
+          GestureDetector(
+            onTap: () {
+              Get.to(
+                () => Milk(),
+                fullscreenDialog: true,
+                transition: Transition.zoom,
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 4,
+                    offset: Offset(4, 8), // Shadow position
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(8),
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    // ignore: prefer_const_constructors
+                    icon: Icon(
+                      Icons.receipt_outlined,
+                      color: Colors.yellow,
+                    ),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'Milk Records',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  )
+                ],
+              )),
             ),
-            padding: const EdgeInsets.all(8),
-            child: Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  // ignore: prefer_const_constructors
-                  icon: Icon(
-                    Icons.receipt_outlined,
-                    color: Colors.yellow,
-                  ),
-                  onPressed: () {},
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  'Milk Records',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                )
-              ],
-            )),
           ),
           InkWell(
             onTap: () {
-              Get.to(() => const TransactionScreen(),
-                  fullscreenDialog: true,
-                  transition: Transition.zoom,
-                  duration: const Duration(microseconds: 500000));
+              Get.to(
+                () => const TransactionScreen(),
+                fullscreenDialog: true,
+                transition: Transition.zoom,
+              );
             },
             child: Container(
               decoration: BoxDecoration(
@@ -306,80 +321,98 @@ class _ManagerScreenState extends State<ManagerScreen> {
               )),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              // ignore: prefer_const_literals_to_create_immutables
-              boxShadow: [
-                const BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 4,
-                  offset: Offset(4, 8), // Shadow position
-                ),
-              ],
+          GestureDetector(
+            onTap: () {
+              Get.to(
+                () => const Events(),
+                fullscreenDialog: true,
+                transition: Transition.zoom,
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                // ignore: prefer_const_literals_to_create_immutables
+                boxShadow: [
+                  const BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 4,
+                    offset: Offset(4, 8), // Shadow position
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(8),
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.event_available,
+                      color: Colors.yellow,
+                    ),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'Events',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  )
+                ],
+              )),
             ),
-            padding: const EdgeInsets.all(8),
-            child: Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.event_available,
-                    color: Colors.yellow,
-                  ),
-                  onPressed: () {},
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  'Events',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                )
-              ],
-            )),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              // ignore: prefer_const_literals_to_create_immutables
-              boxShadow: [
-                const BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 4,
-                  offset: Offset(4, 8), // Shadow position
-                ),
-              ],
+          GestureDetector(
+            onTap: () {
+              Get.to(
+                () => const Settings(),
+                fullscreenDialog: true,
+                transition: Transition.zoom,
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                // ignore: prefer_const_literals_to_create_immutables
+                boxShadow: [
+                  const BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 4,
+                    offset: Offset(4, 8), // Shadow position
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(8),
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    // ignore: prefer_const_constructors
+                    icon: Icon(
+                      Icons.settings,
+                      color: Colors.yellow,
+                    ),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'Settings',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  )
+                ],
+              )),
             ),
-            padding: const EdgeInsets.all(8),
-            child: Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  // ignore: prefer_const_constructors
-                  icon: Icon(
-                    Icons.settings,
-                    color: Colors.yellow,
-                  ),
-                  onPressed: () {},
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  'Settings',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                )
-              ],
-            )),
           ),
           Container(
             decoration: BoxDecoration(

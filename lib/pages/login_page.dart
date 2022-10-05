@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
       _isLoading = true;
     });
 
-    var _url = Uri.parse(constants[0].url + 'sender/login');
+    var _url = Uri.parse(constants[0].url + 'manager/login');
     final response = await http.post(_url, body: {
       'username': userNameController.text,
       'password': passwordController.text,
@@ -75,14 +75,18 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Manager Login'),
+        centerTitle: true,
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: _headerHeight,
-              child: HeaderWidget(_headerHeight, true,
-                  Icons.login_rounded), //let's create a common header widget
+              height: 150,
             ),
             SafeArea(
               child: Container(
@@ -92,13 +96,9 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       const Text(
-                        'Welcome Sender',
-                        style: TextStyle(
-                            fontSize: 40, fontWeight: FontWeight.bold),
-                      ),
-                      const Text(
                         'Signin into your account',
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(
+                            color: Colors.grey, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 30.0),
                       Form(

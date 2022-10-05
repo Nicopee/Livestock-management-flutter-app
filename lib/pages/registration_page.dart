@@ -34,7 +34,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     setState(() {
       _isLoading = true;
     });
-    var _url = Uri.parse(constants[0].url + 'sender');
+    var _url = Uri.parse(constants[0].url + 'managers');
     final response = await http.post(_url, body: {
       'firstname': firstnameController.text,
       'lastname': lastnameController.text,
@@ -48,7 +48,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           fullscreenDialog: true,
           transition: Transition.zoom,
           duration: const Duration(microseconds: 500000));
-      Get.snackbar('success', 'Sender Register');
+      Get.snackbar('success', 'Manager Registered');
       setState(() {
         _isLoading = false;
       });
@@ -64,14 +64,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Register Manager'),
+        centerTitle: true,
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Container(
-              height: 150,
-              child: HeaderWidget(150, false, Icons.person_add_alt_1_rounded),
-            ),
             Container(
               margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -82,44 +82,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        GestureDetector(
-                          child: Stack(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  border:
-                                      Border.all(width: 5, color: Colors.white),
-                                  color: Colors.white,
-                                  // ignore: prefer_const_literals_to_create_immutables
-                                  boxShadow: [
-                                    const BoxShadow(
-                                      color: Colors.black12,
-                                      blurRadius: 20,
-                                      offset: Offset(5, 5),
-                                    ),
-                                  ],
-                                ),
-                                child: Icon(
-                                  Icons.person,
-                                  color: Colors.grey.shade300,
-                                  size: 80.0,
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.fromLTRB(80, 80, 0, 0),
-                                child: Icon(
-                                  Icons.add_circle,
-                                  color: Colors.grey.shade700,
-                                  size: 25.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                         const SizedBox(
-                          height: 30,
+                          height: 150,
                         ),
                         Container(
                           child: TextFormField(
@@ -316,49 +280,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
                         const SizedBox(height: 15.0),
-                        FormField<bool>(
-                          builder: (state) {
-                            return Column(
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Checkbox(
-                                        value: checkboxValue,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            checkboxValue = value!;
-                                            state.didChange(value);
-                                          });
-                                        }),
-                                    const Text(
-                                      "I accept all terms and conditions.",
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    state.errorText ?? '',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      color: Theme.of(context).errorColor,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            );
-                          },
-                          validator: (value) {
-                            if (!checkboxValue) {
-                              return 'You need to accept terms and conditions';
-                            } else {
-                              return null;
-                            }
-                          },
-                        ),
-                        const SizedBox(height: 20.0),
                         _isLoading
                             ? const CircularProgressIndicator()
                             : Container(
@@ -386,91 +307,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ),
                               ),
                         const SizedBox(height: 30.0),
-                        const Text(
-                          "Or create account using social media",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        const SizedBox(height: 25.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              child: FaIcon(
-                                FontAwesomeIcons.googlePlus,
-                                size: 35,
-                                color: HexColor("#EC2D2F"),
-                              ),
-                              onTap: () {
-                                setState(() {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return ThemeHelper().alartDialog(
-                                          "Google Plus",
-                                          "You tap on GooglePlus social icon.",
-                                          context);
-                                    },
-                                  );
-                                });
-                              },
-                            ),
-                            const SizedBox(
-                              width: 30.0,
-                            ),
-                            GestureDetector(
-                              child: Container(
-                                padding: const EdgeInsets.all(0),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  border: Border.all(
-                                      width: 5, color: HexColor("#40ABF0")),
-                                  color: HexColor("#40ABF0"),
-                                ),
-                                child: FaIcon(
-                                  FontAwesomeIcons.twitter,
-                                  size: 23,
-                                  color: HexColor("#FFFFFF"),
-                                ),
-                              ),
-                              onTap: () {
-                                setState(() {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return ThemeHelper().alartDialog(
-                                          "Twitter",
-                                          "You tap on Twitter social icon.",
-                                          context);
-                                    },
-                                  );
-                                });
-                              },
-                            ),
-                            const SizedBox(
-                              width: 30.0,
-                            ),
-                            GestureDetector(
-                              child: FaIcon(
-                                FontAwesomeIcons.facebook,
-                                size: 35,
-                                color: HexColor("#3E529C"),
-                              ),
-                              onTap: () {
-                                setState(() {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return ThemeHelper().alartDialog(
-                                          "Facebook",
-                                          "You tap on Facebook social icon.",
-                                          context);
-                                    },
-                                  );
-                                });
-                              },
-                            ),
-                          ],
-                        ),
                       ],
                     ),
                   ),

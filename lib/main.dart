@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
         theme: ThemeData(
           appBarTheme: const AppBarTheme(backgroundColor: Colors.green),
           textButtonTheme: TextButtonThemeData(
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'Poppins',
         ),
-        home: ManagerScreen());
+        home: LoginPage());
   }
 }
 
@@ -52,6 +51,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: ManagerScreen());
+    return const Scaffold(body: LoginPage());
   }
 }

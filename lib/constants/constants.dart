@@ -1,11 +1,10 @@
 class Constants {
   String url;
-  String defaultBG;
-  Constants({required this.url, required this.defaultBG});
+  Constants({required this.url});
 }
 
 List<Constants> constants = [
   Constants(
-      url: 'http://192.168.0.106/v1/delivery/public/api/', //0
-      defaultBG: 'assets/images/server.png') //1
+    url: 'http://192.168.64.192/v1/livestock-api/public/api/', //0
+  ) //1
 ];

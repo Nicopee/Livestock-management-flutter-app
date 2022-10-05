@@ -57,47 +57,39 @@ class _TransactionScreenState extends State<TransactionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(constants[0].defaultBG),
-                    fit: BoxFit.cover)),
-            child: Scaffold(
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
-              appBar: AppBar(
-                  title: const Text('Transactions',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w500))),
-              body: DefaultTabController(
-                  length: 2, // length of tabs
-                  initialIndex: 0,
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        const TabBar(
-                          labelColor: Colors.green,
-                          unselectedLabelColor: Colors.black,
-                          tabs: [
-                            Tab(
-                              text: 'Income',
-                            ),
-                            Tab(text: 'Expenses'),
-                          ],
-                        ),
-                        Container(
-                            height: MediaQuery.of(context).size.height /
-                                1.4, //height of TabBarView
-                            decoration: const BoxDecoration(
-                                border: Border(
-                                    top: BorderSide(
-                                        color: Colors.grey, width: 0.5))),
-                            child: const TabBarView(
-                                children: <Widget>[Incomes(), Expenses()]))
-                      ])),
+        body: Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      appBar: AppBar(
+          title: const Text('Transactions',
+              style: TextStyle(
+                  fontFamily: 'Montserrat', fontWeight: FontWeight.w500))),
+      body: DefaultTabController(
+          length: 2, // length of tabs
+          initialIndex: 0,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                const TabBar(
+                  labelColor: Colors.green,
+                  unselectedLabelColor: Colors.black,
+                  tabs: [
+                    Tab(
+                      text: 'Income',
+                    ),
+                    Tab(text: 'Expenses'),
+                  ],
+                ),
+                Container(
+                    height: MediaQuery.of(context).size.height /
+                        1.4, //height of TabBarView
+                    decoration: const BoxDecoration(
+                        border: Border(
+                            top: BorderSide(color: Colors.grey, width: 0.5))),
+                    child: const TabBarView(
+                        children: <Widget>[Incomes(), Expenses()]))
+              ])),
 
-              // ),
-            )));
+      // ),
+    ));
   }
 }
