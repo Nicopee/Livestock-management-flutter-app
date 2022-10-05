@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:livestockapp/ui/screens/screens.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,20 +12,38 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.green),
+          textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+            ),
+          ),
+          unselectedWidgetColor: Color.fromARGB(80, 51, 51, 51),
+          shadowColor: const Color(0xFFe6e6e6).withOpacity(0.5),
+          backgroundColor: Colors.white,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          fontFamily: 'Poppins',
+        ),
+        home: ManagerScreen());
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+// GetMaterialApp(
+//         debugShowCheckedModeBanner: false,
+//         title: 'Flutter Demo',
+//         home: ManagerScreen());
 
-  final String title;
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -33,10 +52,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: const LoginPage());
+    return const Scaffold(body: ManagerScreen());
   }
 }

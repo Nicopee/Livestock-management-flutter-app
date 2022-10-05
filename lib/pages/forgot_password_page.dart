@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:cargo_app/common/theme_helper.dart';
+import 'package:livestockapp/common/theme_helper.dart';
 
 import 'forgot_password_verification_page.dart';
 import 'login_page.dart';
@@ -25,7 +24,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: _headerHeight,
                 child:
                     HeaderWidget(_headerHeight, true, Icons.password_rounded),
@@ -42,6 +41,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          // ignore: prefer_const_literals_to_create_immutables
                           children: [
                             Text(
                               'Forgot Password?',
@@ -65,6 +65,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                             SizedBox(
                               height: 10,
                             ),
+                            // ignore: prefer_const_constructors
                             Text(
                               'We will email you a verification code to check your authenticity.',
                               style: TextStyle(
@@ -76,7 +77,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 40.0),
+                      const SizedBox(height: 40.0),
                       Form(
                         key: _formKey,
                         child: Column(

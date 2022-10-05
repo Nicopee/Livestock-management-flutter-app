@@ -16,6 +16,8 @@ class ManagerScreen extends StatefulWidget {
 }
 
 class _ManagerScreenState extends State<ManagerScreen> {
+  double _drawerIconSize = 24;
+  double _drawerFontSize = 17;
   String tokens = "";
 
   void loadData() async {
@@ -52,262 +54,372 @@ class _ManagerScreenState extends State<ManagerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            title: Padding(
-              padding: const EdgeInsets.only(
-                left: 24,
-              ),
-              child: Text(
-                'parcels',
-                style: Theme.of(context).textTheme.headline1,
-              ),
-            ),
-            centerTitle: false,
-            floating: true,
-            snap: false,
-            pinned: true,
-            titleSpacing: 0,
-            actions: [
-              GestureDetector(
-                onTap: () {
-                  Get.to(ProfilePage());
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 24),
-                  child: CircleAvatar(
-                    child: ClipOval(
-                      child: Image.network(''),
-                    ),
+      appBar: AppBar(
+        title: Text(
+          "Livestock Manager",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        elevation: 0.5,
+        iconTheme: IconThemeData(color: Colors.white),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft, end: Alignment.bottomRight,
+                  // ignore: prefer_const_literals_to_create_immutables
+                  colors: <Color>[Colors.green, Colors.greenAccent])),
+        ),
+      ),
+      drawer: Drawer(
+        child: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  stops: [
+                0.0,
+                1.0
+              ],
+                  colors: [
+                Colors.white10,
+                Colors.white12,
+              ])),
+          child: ListView(
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    stops: [0.0, 1.0],
+                    colors: [
+                      Colors.white10,
+                      Colors.white12,
+                    ],
+                  ),
+                ),
+                child: Container(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    "Livestock Manager",
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
-            ],
-            shadowColor: Colors.transparent,
-            expandedHeight: 426,
-            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(16),
-                bottomRight: Radius.circular(16),
+              ListTile(
+                leading: Icon(
+                  Icons.login_rounded,
+                  size: _drawerIconSize,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  'Login Page',
+                  style: TextStyle(
+                    fontSize: _drawerFontSize,
+                    color: Colors.black,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                },
               ),
+              ListTile(
+                leading: Icon(
+                  Icons.person_add_alt_1,
+                  size: _drawerIconSize,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  'Registration Page',
+                  style: TextStyle(
+                    fontSize: _drawerFontSize,
+                    color: Colors.black,
+                  ),
+                ),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.password_rounded,
+                  size: _drawerIconSize,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  'Forgot Password Page',
+                  style: TextStyle(
+                    fontSize: _drawerFontSize,
+                    color: Colors.black,
+                  ),
+                ),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.logout_rounded,
+                  size: _drawerIconSize,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  'Logout',
+                  style: TextStyle(
+                    fontSize: _drawerFontSize,
+                    color: Colors.black,
+                  ),
+                ),
+                onTap: () async {
+                  SharedPreferences preferences =
+                      await SharedPreferences.getInstance();
+                  await preferences.clear();
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: GridView.count(
+        primary: false,
+        padding: const EdgeInsets.all(20),
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        crossAxisCount: 2,
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 4,
+                  offset: Offset(4, 8), // Shadow position
+                ),
+              ],
             ),
-            flexibleSpace: FlexibleSpaceBar(
-              background: Column(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 64,
-                      ),
-                      child: Form(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 48,
-                              width: double.infinity,
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  'Track parcel',
-                                  style: Theme.of(context).textTheme.bodyText1,
-                                ),
-                                style: Theme.of(context).textButtonTheme.style,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+            padding: const EdgeInsets.all(8),
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.settings,
+                    color: Colors.yellow,
+                  ),
+                  onPressed: () {},
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  'Cattle',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                )
+              ],
+            )),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 4,
+                  offset: Offset(4, 8), // Shadow position
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.all(8),
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  // ignore: prefer_const_constructors
+                  icon: Icon(
+                    Icons.receipt_outlined,
+                    color: Colors.yellow,
+                  ),
+                  onPressed: () {},
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  'Milk Records',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                )
+              ],
+            )),
+          ),
+          InkWell(
+            onTap: () {
+              Get.to(() => const TransactionScreen(),
+                  fullscreenDialog: true,
+                  transition: Transition.zoom,
+                  duration: const Duration(microseconds: 500000));
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 4,
+                    offset: Offset(4, 8), // Shadow position
                   ),
                 ],
               ),
-            ),
-          ),
-          const SliverPadding(
-            padding: EdgeInsets.only(
-              top: 32,
-            ),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              Container(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'My parcels',
-                      style: Theme.of(context).textTheme.headline3,
+              padding: const EdgeInsets.all(8),
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.currency_exchange,
+                      color: Colors.yellow,
                     ),
-                  ],
-                ),
-              )
-            ]),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'Transactions',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  )
+                ],
+              )),
+            ),
           ),
-          // SliverList(
-          //   delegate: SliverChildListDelegate([
-          //     FutureBuilder<Packages>(
-          //       future: getPackages("all"),
-          //       builder: (context, snapshot) {
-          //         final _data = snapshot.data?.data;
-          //         if (snapshot.hasData) {
-          //           return SizedBox(
-          //             height: 400,
-          //             child: ListView.builder(
-          //                 itemCount: _data?.length,
-          //                 itemBuilder: (context, index) {
-          //                   final packageData = _data![index];
-          //                   return GestureDetector(
-          //                     onTap: () {
-          //                       Get.to(const SendParcelCheckoutScreen(),
-          //                           arguments: [
-          //                             packageData.packageName,
-          //                             packageData.receiverContact,
-          //                             packageData.receiverEmail,
-          //                             packageData.deliveryLocation,
-          //                             packageData.amountToPay,
-          //                             packageData.receiverName,
-          //                             packageData.description,
-          //                           ]);
-          //                     },
-          //                     child: Padding(
-          //                       padding: const EdgeInsets.symmetric(
-          //                           horizontal: 24, vertical: 16),
-          //                       child: Container(
-          //                         height: 174,
-          //                         padding: const EdgeInsets.all(16),
-          //                         decoration: BoxDecoration(
-          //                           borderRadius: BorderRadius.circular(4),
-          //                           color: Theme.of(context).backgroundColor,
-          //                           boxShadow: [
-          //                             BoxShadow(
-          //                               color: Theme.of(context).shadowColor,
-          //                               spreadRadius: 0,
-          //                               blurRadius: 10,
-          //                               offset: const Offset(0, 0),
-          //                             ),
-          //                           ],
-          //                         ),
-          //                         child: Column(
-          //                           crossAxisAlignment:
-          //                               CrossAxisAlignment.start,
-          //                           mainAxisAlignment:
-          //                               MainAxisAlignment.spaceBetween,
-          //                           children: [
-          //                             Row(
-          //                               mainAxisAlignment:
-          //                                   MainAxisAlignment.spaceBetween,
-          //                               children: [
-          //                                 Text(
-          //                                   packageData.id.toString(),
-          //                                   style: Theme.of(context)
-          //                                       .textTheme
-          //                                       .headline5,
-          //                                 ),
-          //                                 Container(
-          //                                   height: 31,
-          //                                   width: 78,
-          //                                   decoration: const BoxDecoration(
-          //                                     image: DecorationImage(
-          //                                       image: NetworkImage(
-          //                                           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbJCkPE9sdc24J-hB1suNnK1ImSmfrE8BBRA&usqp=CAU'),
-          //                                     ),
-          //                                   ),
-          //                                 ),
-          //                               ],
-          //                             ),
-          //                             Column(
-          //                               crossAxisAlignment:
-          //                                   CrossAxisAlignment.start,
-          //                               children: [
-          //                                 Text(
-          //                                   packageData.packageStatus,
-          //                                   style: Theme.of(context)
-          //                                       .textTheme
-          //                                       .headline4,
-          //                                 ),
-          //                                 const SizedBox(
-          //                                   height: 3,
-          //                                 ),
-          //                                 Text(
-          //                                   timeago
-          //                                       .format(packageData.updatedAt),
-          //                                   // 'Last update: 3 hours ago',
-          //                                   style: Theme.of(context)
-          //                                       .textTheme
-          //                                       .headline6,
-          //                                 ),
-          //                                 const SizedBox(
-          //                                   height: 12,
-          //                                 ),
-          //                                 SizedBox(
-          //                                   height: 5,
-          //                                   child: ClipRRect(
-          //                                     borderRadius:
-          //                                         BorderRadius.circular(2.5),
-          //                                     child: LinearProgressIndicator(
-          //                                       value: 0.7,
-          //                                       color: Theme.of(context)
-          //                                           .appBarTheme
-          //                                           .backgroundColor,
-          //                                       backgroundColor:
-          //                                           const Color(0xFFF8F8F8),
-          //                                     ),
-          //                                   ),
-          //                                 )
-          //                               ],
-          //                             ),
-          //                             SizedBox(
-          //                               width: 60,
-          //                               child: Column(
-          //                                 children: [
-          //                                   Row(
-          //                                     mainAxisAlignment:
-          //                                         MainAxisAlignment.center,
-          //                                     children: [
-          //                                       Text(
-          //                                         'Details',
-          //                                         style: Theme.of(context)
-          //                                             .textTheme
-          //                                             .bodyText2,
-          //                                       ),
-          //                                       SvgPicture.asset(
-          //                                           'assets/images/icon_details.svg')
-          //                                     ],
-          //                                   ),
-          //                                   Container(
-          //                                     height: 1,
-          //                                     color: Colors.black,
-          //                                   ),
-          //                                 ],
-          //                               ),
-          //                             )
-          //                           ],
-          //                         ),
-          //                       ),
-          //                     ),
-          //                   );
-          //                 }),
-          //           );
-          //         } else {
-          //           return const Center(
-          //             child: CircularProgressIndicator(),
-          //           );
-          //         }
-          //       },
-          //     )
-          //   ]),
-          // ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              // ignore: prefer_const_literals_to_create_immutables
+              boxShadow: [
+                const BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 4,
+                  offset: Offset(4, 8), // Shadow position
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.all(8),
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.event_available,
+                    color: Colors.yellow,
+                  ),
+                  onPressed: () {},
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  'Events',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                )
+              ],
+            )),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              // ignore: prefer_const_literals_to_create_immutables
+              boxShadow: [
+                const BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 4,
+                  offset: Offset(4, 8), // Shadow position
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.all(8),
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  // ignore: prefer_const_constructors
+                  icon: Icon(
+                    Icons.settings,
+                    color: Colors.yellow,
+                  ),
+                  onPressed: () {},
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  'Settings',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                )
+              ],
+            )),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              // ignore: prefer_const_literals_to_create_immutables
+              boxShadow: [
+                const BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 4,
+                  offset: Offset(4, 8), // Shadow position
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.all(8),
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.bar_chart_sharp,
+                    color: Colors.yellow,
+                  ),
+                  onPressed: () {},
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  'Reports',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                )
+              ],
+            )),
+          ),
         ],
       ),
-      bottomNavigationBar: const MyBottomNavigationBar(),
     );
   }
 }
