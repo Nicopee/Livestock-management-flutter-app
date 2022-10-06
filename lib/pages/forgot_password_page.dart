@@ -56,18 +56,21 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                             ),
                             Text(
                               'Enter the email address associated with your account.',
+                              // ignore: prefer_const_constructors
                               style: TextStyle(
                                   // fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black54),
                               // textAlign: TextAlign.center,
                             ),
+                            // ignore: prefer_const_constructors
                             SizedBox(
                               height: 10,
                             ),
                             // ignore: prefer_const_constructors
                             Text(
                               'We will email you a verification code to check your authenticity.',
+                              // ignore: prefer_const_constructors
                               style: TextStyle(
                                 color: Colors.black38,
                                 // fontSize: 20,

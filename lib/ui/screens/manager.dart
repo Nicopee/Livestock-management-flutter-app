@@ -15,8 +15,8 @@ class ManagerScreen extends StatefulWidget {
 }
 
 class _ManagerScreenState extends State<ManagerScreen> {
-  double _drawerIconSize = 24;
-  double _drawerFontSize = 17;
+  final double _drawerIconSize = 24;
+  final double _drawerFontSize = 17;
   String tokens = "";
 
   void loadData() async {
@@ -54,14 +54,14 @@ class _ManagerScreenState extends State<ManagerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Livestock Manager",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         elevation: 0.5,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         flexibleSpace: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topLeft, end: Alignment.bottomRight,
                   // ignore: prefer_const_literals_to_create_immutables
@@ -70,7 +70,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
       ),
       drawer: Drawer(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -87,7 +87,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
               DrawerHeader(
                 decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor,
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     stops: [0.0, 1.0],
@@ -99,7 +99,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                 ),
                 child: Container(
                   alignment: Alignment.bottomLeft,
-                  child: Text(
+                  child: const Text(
                     "Livestock Manager",
                     style: TextStyle(
                         fontSize: 25,
@@ -124,7 +124,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
                   );
                 },
               ),
@@ -212,7 +212,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                   ),
                   onPressed: () {
                     Get.to(
-                      () => Cattle(),
+                      () => const Cattle(),
                       fullscreenDialog: true,
                       transition: Transition.zoom,
                     );
@@ -233,7 +233,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
           GestureDetector(
             onTap: () {
               Get.to(
-                () => Milk(),
+                () => const Milk(),
                 fullscreenDialog: true,
                 transition: Transition.zoom,
               );

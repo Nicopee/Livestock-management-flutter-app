@@ -2,14 +2,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:livestockapp/common/theme_helper.dart';
 import 'forgot_password_page.dart';
-// import 'package:livestockapp/ui/screens/home_screen.dart';
 import 'registration_page.dart';
-import 'widgets/header_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 import 'package:livestockapp/constants/constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../ui/screens/manager.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -19,7 +18,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  double _headerHeight = 250;
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
   bool _passwordVisible = false;
@@ -50,15 +48,15 @@ class _LoginPageState extends State<LoginPage> {
       prefs.setString('token', _decoder['token']['access_token']);
       prefs.setString('firstname', _decoder['user']['firstname']);
       prefs.setString('lastname', _decoder['user']['lastname']);
-      prefs.setString('contact', _decoder['user']['contact']);
+      prefs.setString('phone_contact', _decoder['user']['phone_contact']);
       prefs.setString('email', _decoder['user']['email']);
       prefs.setString('role', _decoder['user']['role']);
       prefs.setBool('logged', true);
 
-      // Get.to(() => const HomeScreen(),
-      //     fullscreenDialog: true,
-      //     transition: Transition.zoom,
-      //     duration: const Duration(microseconds: 500000));
+      Get.to(() => const ManagerScreen(),
+          fullscreenDialog: true,
+          transition: Transition.zoom,
+          duration: const Duration(microseconds: 500000));
       setState(() {
         _isLoading = false;
       });
@@ -76,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Manager Login'),
+        title: const Text('Manager Login'),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
@@ -85,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 150,
             ),
             SafeArea(

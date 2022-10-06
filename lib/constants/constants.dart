@@ -5,6 +5,6 @@ class Constants {
 
 List<Constants> constants = [
   Constants(
-    url: 'http://192.168.64.192/v1/livestock-api/public/api/', //0
+    url: 'http://192.168.0.102/v1/livestock-api/public/api/', //0
   ) //1
 ];

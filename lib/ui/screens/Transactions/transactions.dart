@@ -1,11 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:livestockapp/ui/widgets/widgets.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:livestockapp/ui/screens/screens.dart';
-import 'package:get/get.dart';
-import 'package:livestockapp/constants/constants.dart';
-import 'package:livestockapp/pages/profile_page.dart';
-import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import './incomes.dart';
 import './expenses.dart';
@@ -40,19 +33,6 @@ class _TransactionScreenState extends State<TransactionScreen> {
         "Accept": "application/json",
         "Authorization": "Bearer $tokens",
       };
-
-  // Future<Packages> getPackages(String package) async {
-  //   var _url;
-  //   if (package == "all") {
-  //     _url = Uri.parse(constants[0].url + 'package/get/all');
-  //   } else {
-  //     _url = Uri.parse(constants[0].url + 'package/' + package);
-  //   }
-  //   final response = await http.get(_url, headers: headers);
-  //   final String responseData = response.body;
-  //   print(responseData);
-  //   return packagesFromJson(responseData);
-  // }
 
   @override
   Widget build(BuildContext context) {
