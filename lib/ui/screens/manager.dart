@@ -210,7 +210,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
               children: [
                 IconButton(
                   icon: const Icon(
-                    Icons.settings,
+                    Icons.ac_unit,
                     color: Colors.yellow,
                   ),
                   onPressed: () {
@@ -361,7 +361,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                     height: 20,
                   ),
                   const Text(
-                    'Events',
+                    'Insemination',
                     style: TextStyle(
                       fontSize: 18,
                     ),
