@@ -86,7 +86,7 @@ class _CattleDetailsState extends State<CattleDetails> {
                     'Age',
                     style: TextStyle(fontSize: 22),
                   ),
-                  Text(_cattleDetails[3].toString())
+                  Text(_cattleDetails[3].toString() + " " + "Years")
                 ],
               ),
               const SizedBox(
