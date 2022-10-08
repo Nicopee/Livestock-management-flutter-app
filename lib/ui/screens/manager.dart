@@ -175,6 +175,9 @@ class _ManagerScreenState extends State<ManagerScreen> {
                   SharedPreferences preferences =
                       await SharedPreferences.getInstance();
                   await preferences.clear();
+                  Get.to(() => const LoginPage(),
+                      transition: Transition.zoom,
+                      duration: const Duration(microseconds: 500000));
                 },
               ),
             ],

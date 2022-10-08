@@ -221,7 +221,7 @@ class _AddIncomesState extends State<AddIncomes> {
                             },
                             decoration: ThemeHelper().textInputDecoration(
                                 'Description', 'Enter description earned'),
-                            maxLines: null,
+                            maxLines: 3,
                             keyboardType: TextInputType.multiline,
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
