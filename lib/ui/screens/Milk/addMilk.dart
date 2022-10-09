@@ -5,6 +5,7 @@ import '../../../models/milkModel.dart';
 import 'package:http/http.dart' as http;
 import 'package:livestockapp/constants/constants.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Milk extends StatefulWidget {
   const Milk({Key? key}) : super(key: key);
@@ -14,6 +15,20 @@ class Milk extends StatefulWidget {
 }
 
 class _MilkState extends State<Milk> {
+  String role = "";
+  void loadData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      role = prefs.getString("role")!;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
   Map<String, String> get headers => {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -29,15 +44,18 @@ class _MilkState extends State<Milk> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Colors.deepOrange,
-          onPressed: () {
-            Get.to(() => const MilkScreen(),
-                fullscreenDialog: true,
-                transition: Transition.zoom,
-                duration: const Duration(microseconds: 500000));
-          },
-          label: const Text('Add Milk')),
+      floatingActionButton: Visibility(
+        visible: role == "manager" ? true : false,
+        child: FloatingActionButton.extended(
+            backgroundColor: Colors.deepOrange,
+            onPressed: () {
+              Get.to(() => const MilkScreen(),
+                  fullscreenDialog: true,
+                  transition: Transition.zoom,
+                  duration: const Duration(microseconds: 500000));
+            },
+            label: const Text('Add Milk')),
+      ),
       appBar: AppBar(
           title: const Text('Milk',
               style: TextStyle(

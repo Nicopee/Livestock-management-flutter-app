@@ -5,6 +5,7 @@ import 'package:livestockapp/constants/constants.dart';
 import 'package:http/http.dart' as http;
 import '../../../models/cattleModel.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:shared_preferences/shared_preferences.dart';
 import './cattleDetails.dart';
 
 class Cattle extends StatefulWidget {
@@ -15,6 +16,20 @@ class Cattle extends StatefulWidget {
 }
 
 class _CattleState extends State<Cattle> {
+  String role = "";
+  void loadData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      role = prefs.getString("role")!;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
   Map<String, String> get headers => {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -30,16 +45,19 @@ class _CattleState extends State<Cattle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Colors.deepOrange,
-          onPressed: () {
-            Get.to(
-              () => const UploadCattle(),
-              fullscreenDialog: true,
-              transition: Transition.zoom,
-            );
-          },
-          label: const Text('Add Cattle')),
+      floatingActionButton: Visibility(
+        visible: role == "manager" ? true : false,
+        child: FloatingActionButton.extended(
+            backgroundColor: Colors.deepOrange,
+            onPressed: () {
+              Get.to(
+                () => const UploadCattle(),
+                fullscreenDialog: true,
+                transition: Transition.zoom,
+              );
+            },
+            label: const Text('Add Cattle')),
+      ),
       appBar: AppBar(
           title: const Text('Cattle',
               style: TextStyle(

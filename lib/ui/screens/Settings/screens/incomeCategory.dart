@@ -15,11 +15,13 @@ class IncomeCategories extends StatefulWidget {
 
 class _IncomeCategoriesState extends State<IncomeCategories> {
   String tokens = "";
+  String role = "";
 
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       tokens = prefs.getString("token")!;
+      role = prefs.getString("role")!;
     });
   }
 
@@ -45,16 +47,19 @@ class _IncomeCategoriesState extends State<IncomeCategories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Colors.deepOrange,
-          onPressed: () {
-            Get.to(
-              () => const AddIncome(),
-              fullscreenDialog: true,
-              transition: Transition.zoom,
-            );
-          },
-          label: const Text('Add Income Category')),
+      floatingActionButton: Visibility(
+        visible: role == "manager" ? false : true,
+        child: FloatingActionButton.extended(
+            backgroundColor: Colors.deepOrange,
+            onPressed: () {
+              Get.to(
+                () => const AddIncome(),
+                fullscreenDialog: true,
+                transition: Transition.zoom,
+              );
+            },
+            label: const Text('Add Income Category')),
+      ),
       appBar: AppBar(
           title: const Text('Incomes Categories',
               style: TextStyle(

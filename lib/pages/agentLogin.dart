@@ -1,12 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:livestockapp/common/theme_helper.dart';
-import 'forgot_password_page.dart';
-import 'registration_page.dart';
-import 'widgets/header_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 import 'package:livestockapp/constants/constants.dart';
+import '../ui/screens/manager.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -35,7 +32,7 @@ class _AgentLoginPageState extends State<AgentLoginPage> {
       _isLoading = true;
     });
 
-    var _url = Uri.parse(constants[0].url + 'agent/login');
+    var _url = Uri.parse(constants[0].url + 'admin/login');
     final response = await http.post(_url, body: {
       'username': userNameController.text,
       'password': passwordController.text,
@@ -46,17 +43,17 @@ class _AgentLoginPageState extends State<AgentLoginPage> {
     if (response.statusCode == 200) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('token', _decoder['token']['access_token']);
-      prefs.setString('firstname', _decoder['user']['username']);
-      prefs.setString('lastname', _decoder['user']['username']);
-      prefs.setString('contact', _decoder['user']['contact']);
+      prefs.setString('firstname', _decoder['user']['firstname']);
+      prefs.setString('lastname', _decoder['user']['lastname']);
+      prefs.setString('phone_contact', _decoder['user']['phone_contact']);
       prefs.setString('email', _decoder['user']['email']);
       prefs.setString('role', _decoder['user']['role']);
       prefs.setBool('logged', true);
 
-      // Get.to(() => const AgentHomeScreen(),
-      //     fullscreenDialog: true,
-      //     transition: Transition.zoom,
-      //     duration: const Duration(microseconds: 500000));
+      Get.to(() => const ManagerScreen(),
+          fullscreenDialog: true,
+          transition: Transition.zoom,
+          duration: const Duration(microseconds: 500000));
       setState(() {
         _isLoading = false;
       });
@@ -74,13 +71,15 @@ class _AgentLoginPageState extends State<AgentLoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text('Farm Owner Login'),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: _headerHeight,
-              child: HeaderWidget(_headerHeight, true,
-                  Icons.login_rounded), //let's create a common header widget
+            const SizedBox(
+              height: 150,
             ),
             SafeArea(
               child: Container(
@@ -89,11 +88,6 @@ class _AgentLoginPageState extends State<AgentLoginPage> {
                       20, 10, 20, 10), // This will be the login form
                   child: Column(
                     children: [
-                      const Text(
-                        'Welcome Agent',
-                        style: TextStyle(
-                            fontSize: 40, fontWeight: FontWeight.bold),
-                      ),
                       const Text(
                         'Signin into your account',
                         style: TextStyle(color: Colors.grey),
@@ -190,14 +184,7 @@ class _AgentLoginPageState extends State<AgentLoginPage> {
                                 margin: EdgeInsets.fromLTRB(10, 0, 10, 20),
                                 alignment: Alignment.topRight,
                                 child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              ForgotPasswordPage()),
-                                    );
-                                  },
+                                  onTap: () {},
                                   child: Text(
                                     "Forgot your password?",
                                     style: TextStyle(

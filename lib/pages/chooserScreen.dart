@@ -14,11 +14,11 @@ class _ChooseUserState extends State<ChooseUser> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF5ca6c3), Color(0xFFBD3C9B)],
-          begin: const FractionalOffset(0, 0),
-          end: const FractionalOffset(1.0, 0.0),
+          colors: [Colors.white, Colors.white],
+          begin: FractionalOffset(0, 0),
+          end: FractionalOffset(1.0, 0.0),
           stops: [0.0, 1.0],
           tileMode: TileMode.clamp,
         ),
@@ -36,22 +36,22 @@ class _ChooseUserState extends State<ChooseUser> {
                     duration: const Duration(microseconds: 500000));
               },
               child: Container(
-                  margin: EdgeInsets.all(30),
+                  margin: const EdgeInsets.all(30),
                   width: 150,
                   height: 150,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20),
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20)),
                     child: Container(
-                      color: Colors.blue,
-                      child: Center(
-                        child: Text("Agent",
+                      color: Colors.green,
+                      child: const Center(
+                        child: Text("Farm Owner",
                             style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 30,
+                                color: Colors.white,
+                                fontSize: 20,
                                 decoration: TextDecoration.none)),
                       ),
                     ),
@@ -66,22 +66,22 @@ class _ChooseUserState extends State<ChooseUser> {
                     duration: const Duration(microseconds: 500000));
               },
               child: Container(
-                  margin: EdgeInsets.all(30),
+                  margin: const EdgeInsets.all(30),
                   width: 150,
                   height: 150,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20),
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20)),
                     child: Container(
-                      color: Colors.blue,
-                      child: Center(
-                        child: Text("Sender",
+                      color: Colors.green,
+                      child: const Center(
+                        child: Text("Farm Manager",
                             style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 30,
+                                color: Colors.white,
+                                fontSize: 20,
                                 decoration: TextDecoration.none)),
                       ),
                     ),

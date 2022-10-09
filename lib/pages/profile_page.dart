@@ -28,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
     setState(() {
       firstname = prefs.getString("firstname")!;
       lastname = prefs.getString("lastname")!;
-      contact = prefs.getString("contact")!;
+      contact = prefs.getString("phone_contact")!;
       email = prefs.getString("email")!;
       role = prefs.getString("role")!;
     });
@@ -56,8 +56,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: <Color>[
-                Color(0xFF5ca6c3),
-                Color(0xFFBD3C9B),
+                Colors.green,
+                Colors.green,
               ])),
         ),
         actions: [

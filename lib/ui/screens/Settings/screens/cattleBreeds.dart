@@ -15,11 +15,13 @@ class CattleBreed extends StatefulWidget {
 
 class _CattleBreedState extends State<CattleBreed> {
   String tokens = "";
+  String role = "";
 
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       tokens = prefs.getString("token")!;
+      role = prefs.getString("role")!;
     });
   }
 
@@ -45,16 +47,19 @@ class _CattleBreedState extends State<CattleBreed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Colors.deepOrange,
-          onPressed: () {
-            Get.to(
-              () => const AddBreed(),
-              fullscreenDialog: true,
-              transition: Transition.zoom,
-            );
-          },
-          label: const Text('Add Breed')),
+      floatingActionButton: Visibility(
+        visible: role == "manager" ? false : true,
+        child: FloatingActionButton.extended(
+            backgroundColor: Colors.deepOrange,
+            onPressed: () {
+              Get.to(
+                () => const AddBreed(),
+                fullscreenDialog: true,
+                transition: Transition.zoom,
+              );
+            },
+            label: const Text('Add Breed')),
+      ),
       appBar: AppBar(
           title: const Text('Cattle Breeds',
               style: TextStyle(

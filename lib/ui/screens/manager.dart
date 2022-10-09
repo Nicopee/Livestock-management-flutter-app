@@ -130,6 +130,26 @@ class _ManagerScreenState extends State<ManagerScreen> {
               ),
               ListTile(
                 leading: Icon(
+                  Icons.person,
+                  size: _drawerIconSize,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  'Profile',
+                  style: TextStyle(
+                    fontSize: _drawerFontSize,
+                    color: Colors.black,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(
                   Icons.person_add_alt_1,
                   size: _drawerIconSize,
                   color: Colors.black,

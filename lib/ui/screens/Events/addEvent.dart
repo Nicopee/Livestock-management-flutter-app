@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './insemination.dart';
 
 class Events extends StatefulWidget {
@@ -15,6 +16,20 @@ class Events extends StatefulWidget {
 }
 
 class _EventsState extends State<Events> {
+  String role = "";
+  void loadData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      role = prefs.getString("role")!;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
   Map<String, String> get headers => {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -30,15 +45,18 @@ class _EventsState extends State<Events> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Colors.deepOrange,
-          onPressed: () {
-            Get.to(() => const Insemination(),
-                fullscreenDialog: true,
-                transition: Transition.zoom,
-                duration: const Duration(microseconds: 500000));
-          },
-          label: const Text('Add Insemination')),
+      floatingActionButton: Visibility(
+        visible: role == "manager" ? true : false,
+        child: FloatingActionButton.extended(
+            backgroundColor: Colors.deepOrange,
+            onPressed: () {
+              Get.to(() => const Insemination(),
+                  fullscreenDialog: true,
+                  transition: Transition.zoom,
+                  duration: const Duration(microseconds: 500000));
+            },
+            label: const Text('Add Insemination')),
+      ),
       appBar: AppBar(
           title: const Text('Insemination',
               style: TextStyle(

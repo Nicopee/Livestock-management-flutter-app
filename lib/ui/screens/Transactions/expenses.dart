@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../models/expenseModel.dart';
 import 'package:livestockapp/constants/constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import './addExpense.dart';
@@ -14,6 +15,20 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
+  String role = "";
+  void loadData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      role = prefs.getString("role")!;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
   Map<String, String> get headers => {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -29,16 +44,19 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Colors.deepOrange,
-          onPressed: () {
-            Get.to(
-              () => AddExpenses(),
-              fullscreenDialog: true,
-              transition: Transition.zoom,
-            );
-          },
-          label: const Text('Add Expense')),
+      floatingActionButton: Visibility(
+        visible: role == "manager" ? true : false,
+        child: FloatingActionButton.extended(
+            backgroundColor: Colors.deepOrange,
+            onPressed: () {
+              Get.to(
+                () => AddExpenses(),
+                fullscreenDialog: true,
+                transition: Transition.zoom,
+              );
+            },
+            label: const Text('Add Expense')),
+      ),
       body: FutureBuilder<ExpenseModel>(
         future: getAllExpenses(),
         builder: (context, snapshot) {

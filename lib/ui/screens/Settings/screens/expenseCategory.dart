@@ -15,11 +15,13 @@ class ExpenseCategories extends StatefulWidget {
 
 class _ExpenseCategoriesState extends State<ExpenseCategories> {
   String tokens = "";
+  String role = "";
 
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       tokens = prefs.getString("token")!;
+      role = prefs.getString("role")!;
     });
   }
 
@@ -45,16 +47,19 @@ class _ExpenseCategoriesState extends State<ExpenseCategories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Colors.deepOrange,
-          onPressed: () {
-            Get.to(
-              () => const AddExpenseType(),
-              fullscreenDialog: true,
-              transition: Transition.zoom,
-            );
-          },
-          label: const Text('Add Expense Category')),
+      floatingActionButton: Visibility(
+        visible: role == "manager" ? false : true,
+        child: FloatingActionButton.extended(
+            backgroundColor: Colors.deepOrange,
+            onPressed: () {
+              Get.to(
+                () => const AddExpenseType(),
+                fullscreenDialog: true,
+                transition: Transition.zoom,
+              );
+            },
+            label: const Text('Add Expense Category')),
+      ),
       appBar: AppBar(
           title: const Text('Expense Categories',
               style: TextStyle(

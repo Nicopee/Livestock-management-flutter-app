@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Manager Login'),
+        title: const Text('Farm Manager Login'),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
