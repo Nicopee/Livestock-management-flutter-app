@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class IncomeCategories extends StatefulWidget {
-  const IncomeCategories({Key? key}) : super(key: key);
+  const IncomeCategories({Key key}) : super(key: key);
 
   @override
   State<IncomeCategories> createState() => _IncomeCategoriesState();
@@ -20,8 +20,8 @@ class _IncomeCategoriesState extends State<IncomeCategories> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
-      role = prefs.getString("role")!;
+      tokens = prefs.getString("token");
+      role = prefs.getString("role");
     });
   }
 
@@ -74,7 +74,7 @@ class _IncomeCategoriesState extends State<IncomeCategories> {
               child: ListView.builder(
                   itemCount: _data?.length,
                   itemBuilder: (context, index) {
-                    final data = _data![index];
+                    final data = _data[index];
                     return GestureDetector(
                       onTap: () {},
                       child: Card(

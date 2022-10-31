@@ -12,7 +12,7 @@ String inseminationModelToJson(InseminationModel data) =>
 
 class InseminationModel {
   InseminationModel({
-    required this.data,
+    this.data,
   });
 
   List<Datum> data;
@@ -29,14 +29,14 @@ class InseminationModel {
 
 class Datum {
   Datum({
-    required this.id,
-    required this.inseminationDate,
-    required this.description,
-    required this.cattleId,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.expectedBirth,
-    required this.cattle,
+    this.id,
+    this.inseminationDate,
+    this.description,
+    this.cattleId,
+    this.createdAt,
+    this.updatedAt,
+    this.expectedBirth,
+    this.cattle,
   });
 
   int id;
@@ -73,18 +73,18 @@ class Datum {
 
 class Cattle {
   Cattle({
-    required this.id,
-    required this.name,
-    required this.tagNo,
-    required this.weight,
-    required this.dateOfBirth,
-    required this.cattleImage,
-    required this.description,
-    required this.gender,
-    required this.cattleBreedId,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.age,
+    this.id,
+    this.name,
+    this.tagNo,
+    this.weight,
+    this.dateOfBirth,
+    this.cattleImage,
+    this.description,
+    this.gender,
+    this.cattleBreedId,
+    this.createdAt,
+    this.updatedAt,
+    this.age,
   });
 
   int id;

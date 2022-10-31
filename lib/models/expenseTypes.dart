@@ -11,7 +11,7 @@ String expenseTypesToJson(ExpenseTypes data) => json.encode(data.toJson());
 
 class ExpenseTypes {
   ExpenseTypes({
-    required this.data,
+    this.data,
   });
 
   List<Datum> data;
@@ -27,11 +27,11 @@ class ExpenseTypes {
 
 class Datum {
   Datum({
-    required this.id,
-    required this.expenseType,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.addedBy,
+    this.id,
+    this.expenseType,
+    this.createdAt,
+    this.updatedAt,
+    this.addedBy,
   });
 
   int id;

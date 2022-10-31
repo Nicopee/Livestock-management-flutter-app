@@ -11,7 +11,7 @@ String incomeModelToJson(IncomeModel data) => json.encode(data.toJson());
 
 class IncomeModel {
   IncomeModel({
-    required this.data,
+    this.data,
   });
 
   List<Datum> data;
@@ -27,15 +27,15 @@ class IncomeModel {
 
 class Datum {
   Datum({
-    required this.id,
-    required this.incomeDate,
-    required this.amountEarned,
-    required this.receiptNo,
-    required this.description,
-    required this.incomeTypeId,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.incomeTypes,
+    this.id,
+    this.incomeDate,
+    this.amountEarned,
+    this.receiptNo,
+    this.description,
+    this.incomeTypeId,
+    this.createdAt,
+    this.updatedAt,
+    this.incomeTypes,
   });
 
   int id;
@@ -75,10 +75,10 @@ class Datum {
 
 class IncomeTypes {
   IncomeTypes({
-    required this.id,
-    required this.incomeType,
-    required this.createdAt,
-    required this.updatedAt,
+    this.id,
+    this.incomeType,
+    this.createdAt,
+    this.updatedAt,
   });
 
   int id;

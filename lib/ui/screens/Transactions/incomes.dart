@@ -8,7 +8,7 @@ import '../../../models/incomes.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class Incomes extends StatefulWidget {
-  const Incomes({Key? key}) : super(key: key);
+  const Incomes({Key key}) : super(key: key);
 
   @override
   State<Incomes> createState() => _IncomesState();
@@ -21,8 +21,8 @@ class _IncomesState extends State<Incomes> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
-      role = prefs.getString("role")!;
+      tokens = prefs.getString("token");
+      role = prefs.getString("role");
     });
   }
 
@@ -71,7 +71,7 @@ class _IncomesState extends State<Incomes> {
               child: ListView.builder(
                   itemCount: _data?.length,
                   itemBuilder: (context, index) {
-                    final incomeData = _data![index];
+                    final incomeData = _data[index];
                     return GestureDetector(
                       onTap: () {},
                       child: Padding(

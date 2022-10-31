@@ -7,7 +7,7 @@ import '../../screens/Settings/screens/cattleBreeds.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddBreed extends StatefulWidget {
-  const AddBreed({Key? key}) : super(key: key);
+  const AddBreed({Key key}) : super(key: key);
 
   @override
   State<AddBreed> createState() => _AddBreedState();
@@ -23,7 +23,7 @@ class _AddBreedState extends State<AddBreed> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
+      tokens = prefs.getString("token");
     });
   }
 
@@ -88,7 +88,7 @@ class _AddBreedState extends State<AddBreed> {
                   child: TextFormField(
                     controller: breedController,
                     onSaved: (value) {
-                      breedController.text = value!;
+                      breedController.text = value;
                     },
                     validator: (text) {
                       if (text == null || text.isEmpty) {
@@ -123,7 +123,7 @@ class _AddBreedState extends State<AddBreed> {
                           ),
                         ),
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                          if (_formKey.currentState.validate()) {
                             addBreed();
                           }
                         },

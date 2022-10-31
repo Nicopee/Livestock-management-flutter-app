@@ -8,7 +8,7 @@ import 'profile_page.dart';
 import 'widgets/header_widget.dart';
 
 class ForgotPasswordVerificationPage extends StatefulWidget {
-  const ForgotPasswordVerificationPage({Key? key}) : super(key: key);
+  const ForgotPasswordVerificationPage({Key key}) : super(key: key);
 
   @override
   _ForgotPasswordVerificationPageState createState() =>

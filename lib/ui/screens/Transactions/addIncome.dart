@@ -11,7 +11,7 @@ import './transactions.dart';
 import 'dart:convert';
 
 class AddIncomes extends StatefulWidget {
-  AddIncomes({Key? key}) : super(key: key);
+  const AddIncomes({Key key}) : super(key: key);
 
   @override
   State<AddIncomes> createState() => _AddIncomesState();
@@ -33,7 +33,7 @@ class _AddIncomesState extends State<AddIncomes> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
+      tokens = prefs.getString("token");
     });
   }
 
@@ -191,7 +191,7 @@ class _AddIncomesState extends State<AddIncomes> {
                           child: TextFormField(
                             controller: amountController,
                             onSaved: (value) {
-                              amountController.text = value!;
+                              amountController.text = value;
                             },
                             validator: (text) {
                               if (text == null || text.isEmpty) {
@@ -211,7 +211,7 @@ class _AddIncomesState extends State<AddIncomes> {
                           child: TextFormField(
                             controller: descriptionController,
                             onSaved: (value) {
-                              descriptionController.text = value!;
+                              descriptionController.text = value;
                             },
                             validator: (text) {
                               if (text == null || text.isEmpty) {
@@ -247,7 +247,7 @@ class _AddIncomesState extends State<AddIncomes> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
+                                    if (_formKey.currentState.validate()) {
                                       addNewIncome();
                                     }
                                   },

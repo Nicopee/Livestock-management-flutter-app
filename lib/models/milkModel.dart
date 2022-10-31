@@ -10,7 +10,7 @@ String milkModelToJson(MilkModel data) => json.encode(data.toJson());
 
 class MilkModel {
   MilkModel({
-    required this.data,
+    this.data,
   });
 
   List<Datum> data;
@@ -26,14 +26,14 @@ class MilkModel {
 
 class Datum {
   Datum({
-    required this.id,
-    required this.milkingDate,
-    required this.totalMilk,
-    required this.description,
-    required this.cattleId,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.cattle,
+    this.id,
+    this.milkingDate,
+    this.totalMilk,
+    this.description,
+    this.cattleId,
+    this.createdAt,
+    this.updatedAt,
+    this.cattle,
   });
 
   int id;
@@ -70,19 +70,19 @@ class Datum {
 
 class Cattle {
   Cattle({
-    required this.id,
-    required this.name,
-    required this.tagNo,
-    required this.weight,
-    required this.dateOfBirth,
-    required this.cattleImage,
-    required this.description,
-    required this.gender,
-    required this.cattleBreedId,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.age,
-    required this.breed,
+    this.id,
+    this.name,
+    this.tagNo,
+    this.weight,
+    this.dateOfBirth,
+    this.cattleImage,
+    this.description,
+    this.gender,
+    this.cattleBreedId,
+    this.createdAt,
+    this.updatedAt,
+    this.age,
+    this.breed,
   });
 
   int id;
@@ -134,10 +134,10 @@ class Cattle {
 
 class Breed {
   Breed({
-    required this.id,
-    required this.breed,
-    required this.createdAt,
-    required this.updatedAt,
+    this.id,
+    this.breed,
+    this.createdAt,
+    this.updatedAt,
   });
 
   int id;

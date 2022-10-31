@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:livestockapp/ui/screens/screens.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
-  const MyBottomNavigationBar({Key? key}) : super(key: key);
+  const MyBottomNavigationBar({Key key}) : super(key: key);
 
   @override
   _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();

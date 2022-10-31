@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import './addMilk.dart';
 
 class MilkScreen extends StatefulWidget {
-  const MilkScreen({Key? key}) : super(key: key);
+  const MilkScreen({Key key}) : super(key: key);
 
   @override
   State<MilkScreen> createState() => _MilkScreenState();
@@ -30,7 +30,7 @@ class _MilkScreenState extends State<MilkScreen> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
+      tokens = prefs.getString("token");
     });
   }
 
@@ -168,7 +168,7 @@ class _MilkScreenState extends State<MilkScreen> {
                   child: TextFormField(
                     controller: totalMilkController,
                     onSaved: (value) {
-                      totalMilkController.text = value!;
+                      totalMilkController.text = value;
                     },
                     validator: (text) {
                       if (text == null || text.isEmpty) {
@@ -201,7 +201,7 @@ class _MilkScreenState extends State<MilkScreen> {
                     keyboardType: TextInputType.multiline,
                     controller: descriptionController,
                     onSaved: (value) {
-                      descriptionController.text = value!;
+                      descriptionController.text = value;
                     },
                     validator: (text) {
                       if (text == null || text.isEmpty) {
@@ -237,7 +237,7 @@ class _MilkScreenState extends State<MilkScreen> {
                           ),
                         ),
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                          if (_formKey.currentState.validate()) {
                             addMilk();
                           }
                         },

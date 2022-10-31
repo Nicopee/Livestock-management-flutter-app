@@ -11,7 +11,7 @@ String expenseModelToJson(ExpenseModel data) => json.encode(data.toJson());
 
 class ExpenseModel {
   ExpenseModel({
-    required this.data,
+    this.data,
   });
 
   List<Datum> data;
@@ -27,16 +27,16 @@ class ExpenseModel {
 
 class Datum {
   Datum({
-    required this.id,
-    required this.expenseDate,
-    required this.amountSpent,
-    required this.receiptNo,
-    required this.description,
-    required this.expenseTypeId,
-    required this.addedBy,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.expenseTypes,
+    this.id,
+    this.expenseDate,
+    this.amountSpent,
+    this.receiptNo,
+    this.description,
+    this.expenseTypeId,
+    this.addedBy,
+    this.createdAt,
+    this.updatedAt,
+    this.expenseTypes,
   });
 
   int id;
@@ -79,11 +79,11 @@ class Datum {
 
 class ExpenseTypes {
   ExpenseTypes({
-    required this.id,
-    required this.expenseType,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.addedBy,
+    this.id,
+    this.expenseType,
+    this.createdAt,
+    this.updatedAt,
+    this.addedBy,
   });
 
   int id;

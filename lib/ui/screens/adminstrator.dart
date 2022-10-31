@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AdminScreen extends StatefulWidget {
-  const AdminScreen({Key? key}) : super(key: key);
+  const AdminScreen({Key key}) : super(key: key);
 
   @override
   _AdminScreenState createState() => _AdminScreenState();
@@ -23,7 +23,7 @@ class _AdminScreenState extends State<AdminScreen> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
+      tokens = prefs.getString("token");
     });
   }
 

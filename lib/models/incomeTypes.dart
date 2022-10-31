@@ -10,7 +10,7 @@ String incomesToJson(Incomes data) => json.encode(data.toJson());
 
 class Incomes {
   Incomes({
-    required this.data,
+    this.data,
   });
 
   List<Datum> data;
@@ -26,10 +26,10 @@ class Incomes {
 
 class Datum {
   Datum({
-    required this.id,
-    required this.incomeType,
-    required this.createdAt,
-    required this.updatedAt,
+    this.id,
+    this.incomeType,
+    this.createdAt,
+    this.updatedAt,
   });
 
   int id;

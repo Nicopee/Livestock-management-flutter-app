@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MyParcelSize extends StatelessWidget {
-  const MyParcelSize(
-      {Key? key,
-      required this.parcelSize,
-      required this.parcelSizeDimension,
-      required this.parcelSizeDescription,
-      required this.parcelSizeImage})
-      : super(key: key);
+  const MyParcelSize({
+    Key key,
+    this.parcelSize,
+    this.parcelSizeDimension,
+    this.parcelSizeDescription,
+    this.parcelSizeImage,
+  }) : super(key: key);
 
   final String parcelSize,
       parcelSizeDimension,

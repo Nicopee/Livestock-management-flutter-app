@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import './incomeCategory.dart';
 
 class AddIncome extends StatefulWidget {
-  const AddIncome({Key? key}) : super(key: key);
+  const AddIncome({Key key}) : super(key: key);
 
   @override
   State<AddIncome> createState() => _AddIncomeState();
@@ -23,7 +23,7 @@ class _AddIncomeState extends State<AddIncome> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
+      tokens = prefs.getString("token");
     });
   }
 
@@ -88,7 +88,7 @@ class _AddIncomeState extends State<AddIncome> {
                   child: TextFormField(
                     controller: incomeController,
                     onSaved: (value) {
-                      incomeController.text = value!;
+                      incomeController.text = value;
                     },
                     validator: (text) {
                       if (text == null || text.isEmpty) {
@@ -123,7 +123,7 @@ class _AddIncomeState extends State<AddIncome> {
                           ),
                         ),
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                          if (_formKey.currentState.validate()) {
                             addIncome();
                           }
                         },

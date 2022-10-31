@@ -10,7 +10,7 @@ String breedsToJson(Breeds data) => json.encode(data.toJson());
 
 class Breeds {
   Breeds({
-    required this.data,
+    this.data,
   });
 
   List<Datum> data;
@@ -26,10 +26,10 @@ class Breeds {
 
 class Datum {
   Datum({
-    required this.id,
-    required this.breed,
-    required this.createdAt,
-    required this.updatedAt,
+    this.id,
+    this.breed,
+    this.createdAt,
+    this.updatedAt,
   });
 
   int id;

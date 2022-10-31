@@ -4,7 +4,7 @@ import 'package:livestockapp/pages/login_page.dart';
 import 'package:livestockapp/pages/agentLogin.dart';
 
 class ChooseUser extends StatefulWidget {
-  const ChooseUser({Key? key}) : super(key: key);
+  const ChooseUser({Key key}) : super(key: key);
 
   @override
   State<ChooseUser> createState() => _ChooseUserState();

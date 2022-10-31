@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      isLogged = prefs.getBool("logged")!;
+      isLogged = prefs.getBool("logged");
     });
   }
 

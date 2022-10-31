@@ -11,7 +11,7 @@ import 'dart:convert';
 import '../ui/screens/manager.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                                 child: TextFormField(
                                   controller: userNameController,
                                   onSaved: (value) {
-                                    userNameController.text = value!;
+                                    userNameController.text = value;
                                   },
                                   validator: (text) {
                                     if (text == null || text.isEmpty) {
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                                 child: TextFormField(
                                   controller: passwordController,
                                   onSaved: (value) {
-                                    passwordController.text = value!;
+                                    passwordController.text = value;
                                   },
                                   validator: (text) {
                                     if (text == null || text.isEmpty) {
@@ -227,7 +227,7 @@ class _LoginPageState extends State<LoginPage> {
                                           ),
                                         ),
                                         onPressed: () {
-                                          if (_formKey.currentState!
+                                          if (_formKey.currentState
                                               .validate()) {
                                             userLogin();
                                           }

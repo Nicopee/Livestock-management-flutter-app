@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../Settings/screens/cattleBreeds.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({Key key}) : super(key: key);
 
   @override
   State<Settings> createState() => _SettingsState();

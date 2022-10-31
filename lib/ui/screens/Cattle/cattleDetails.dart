@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CattleDetails extends StatefulWidget {
-  const CattleDetails({Key? key}) : super(key: key);
+  const CattleDetails({Key key}) : super(key: key);
 
   @override
   State<CattleDetails> createState() => _CattleDetailsState();

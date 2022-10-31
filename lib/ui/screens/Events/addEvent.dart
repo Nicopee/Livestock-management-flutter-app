@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import './insemination.dart';
 
 class Events extends StatefulWidget {
-  const Events({Key? key}) : super(key: key);
+  const Events({Key key}) : super(key: key);
 
   @override
   State<Events> createState() => _EventsState();
@@ -20,7 +20,7 @@ class _EventsState extends State<Events> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      role = prefs.getString("role")!;
+      role = prefs.getString("role");
     });
   }
 
@@ -71,7 +71,7 @@ class _EventsState extends State<Events> {
               child: ListView.builder(
                   itemCount: _data?.length,
                   itemBuilder: (context, index) {
-                    final incomeData = _data![index];
+                    final incomeData = _data[index];
                     return GestureDetector(
                       onTap: () {},
                       child: Padding(

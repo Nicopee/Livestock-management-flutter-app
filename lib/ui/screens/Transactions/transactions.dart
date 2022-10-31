@@ -4,7 +4,7 @@ import './incomes.dart';
 import './expenses.dart';
 
 class TransactionScreen extends StatefulWidget {
-  const TransactionScreen({Key? key}) : super(key: key);
+  const TransactionScreen({Key key}) : super(key: key);
 
   @override
   _TransactionScreenState createState() => _TransactionScreenState();
@@ -18,7 +18,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
+      tokens = prefs.getString("token");
     });
   }
 

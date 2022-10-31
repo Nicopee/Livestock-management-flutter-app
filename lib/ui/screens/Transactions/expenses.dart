@@ -8,7 +8,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import './addExpense.dart';
 
 class Expenses extends StatefulWidget {
-  const Expenses({Key? key}) : super(key: key);
+  const Expenses({Key key}) : super(key: key);
 
   @override
   State<Expenses> createState() => _ExpensesState();
@@ -19,7 +19,7 @@ class _ExpensesState extends State<Expenses> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      role = prefs.getString("role")!;
+      role = prefs.getString("role");
     });
   }
 
@@ -67,7 +67,7 @@ class _ExpensesState extends State<Expenses> {
               child: ListView.builder(
                   itemCount: _data?.length,
                   itemBuilder: (context, index) {
-                    final incomeData = _data![index];
+                    final incomeData = _data[index];
                     return GestureDetector(
                       onTap: () {},
                       child: Padding(

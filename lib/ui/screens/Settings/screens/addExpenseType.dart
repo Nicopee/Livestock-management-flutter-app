@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import './expenseCategory.dart';
 
 class AddExpenseType extends StatefulWidget {
-  const AddExpenseType({Key? key}) : super(key: key);
+  const AddExpenseType({Key key}) : super(key: key);
 
   @override
   State<AddExpenseType> createState() => _AddExpenseTypeState();
@@ -23,7 +23,7 @@ class _AddExpenseTypeState extends State<AddExpenseType> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
+      tokens = prefs.getString("token");
     });
   }
 
@@ -88,7 +88,7 @@ class _AddExpenseTypeState extends State<AddExpenseType> {
                   child: TextFormField(
                     controller: expenseController,
                     onSaved: (value) {
-                      expenseController.text = value!;
+                      expenseController.text = value;
                     },
                     validator: (text) {
                       if (text == null || text.isEmpty) {
@@ -123,7 +123,7 @@ class _AddExpenseTypeState extends State<AddExpenseType> {
                           ),
                         ),
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                          if (_formKey.currentState.validate()) {
                             addExpense();
                           }
                         },

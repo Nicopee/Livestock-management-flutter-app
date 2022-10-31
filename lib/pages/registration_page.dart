@@ -89,7 +89,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: TextFormField(
                             controller: firstnameController,
                             onSaved: (value) {
-                              firstnameController.text = value!;
+                              firstnameController.text = value;
                             },
                             validator: (text) {
                               if (text == null || text.isEmpty) {
@@ -109,7 +109,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: TextFormField(
                             controller: lastnameController,
                             onSaved: (value) {
-                              lastnameController.text = value!;
+                              lastnameController.text = value;
                             },
                             validator: (text) {
                               if (text == null || text.isEmpty) {
@@ -127,7 +127,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: TextFormField(
                             controller: emailController,
                             onSaved: (value) {
-                              emailController.text = value!;
+                              emailController.text = value;
                             },
                             decoration: ThemeHelper().textInputDecoration(
                                 "E-mail address", "Enter your email"),
@@ -146,7 +146,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: TextFormField(
                             controller: contactController,
                             onSaved: (value) {
-                              contactController.text = value!;
+                              contactController.text = value;
                             },
                             decoration: ThemeHelper().textInputDecoration(
                                 "Mobile Number", "Enter your mobile number"),
@@ -165,7 +165,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: TextFormField(
                             controller: passwordController,
                             onSaved: (value) {
-                              passwordController.text = value!;
+                              passwordController.text = value;
                             },
                             obscureText: !_passwordVisible,
                             decoration: InputDecoration(
@@ -210,7 +210,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                             ),
                             validator: (val) {
-                              if (val!.isEmpty) {
+                              if (val.isEmpty) {
                                 return "Please enter your password";
                               }
                               return null;
@@ -223,7 +223,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: TextFormField(
                             controller: confirmpassController,
                             onSaved: (value) {
-                              confirmpassController.text = value!;
+                              confirmpassController.text = value;
                             },
                             obscureText: !_passwordVisible2,
                             decoration: InputDecoration(
@@ -268,7 +268,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                             ),
                             validator: (val) {
-                              if (val!.isEmpty) {
+                              if (val.isEmpty) {
                                 return "Please confirm your password";
                               } else if (confirmpassController.text !=
                                   passwordController.text) {
@@ -300,7 +300,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
+                                    if (_formKey.currentState.validate()) {
                                       register();
                                     }
                                   },

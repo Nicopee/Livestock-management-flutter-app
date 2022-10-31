@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 import './addEvent.dart';
 
 class Insemination extends StatefulWidget {
-  const Insemination({Key? key}) : super(key: key);
+  const Insemination({Key key}) : super(key: key);
 
   @override
   State<Insemination> createState() => _InseminationState();
@@ -30,7 +30,7 @@ class _InseminationState extends State<Insemination> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
+      tokens = prefs.getString("token");
     });
   }
 
@@ -179,7 +179,7 @@ class _InseminationState extends State<Insemination> {
                     keyboardType: TextInputType.multiline,
                     controller: descriptionController,
                     onSaved: (value) {
-                      descriptionController.text = value!;
+                      descriptionController.text = value;
                     },
                     validator: (text) {
                       if (text == null || text.isEmpty) {
@@ -215,7 +215,7 @@ class _InseminationState extends State<Insemination> {
                           ),
                         ),
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                          if (_formKey.currentState.validate()) {
                             addInsemination();
                           }
                         },

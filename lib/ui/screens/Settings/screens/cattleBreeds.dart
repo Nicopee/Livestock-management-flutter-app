@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class CattleBreed extends StatefulWidget {
-  const CattleBreed({Key? key}) : super(key: key);
+  const CattleBreed({Key key}) : super(key: key);
 
   @override
   State<CattleBreed> createState() => _CattleBreedState();
@@ -20,8 +20,8 @@ class _CattleBreedState extends State<CattleBreed> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
-      role = prefs.getString("role")!;
+      tokens = prefs.getString("token");
+      role = prefs.getString("role");
     });
   }
 
@@ -74,7 +74,7 @@ class _CattleBreedState extends State<CattleBreed> {
               child: ListView.builder(
                   itemCount: _data?.length,
                   itemBuilder: (context, index) {
-                    final data = _data![index];
+                    final data = _data[index];
                     return GestureDetector(
                       onTap: () {},
                       child: Card(

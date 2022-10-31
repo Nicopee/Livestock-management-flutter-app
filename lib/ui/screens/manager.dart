@@ -8,7 +8,7 @@ import '../screens/Events/addEvent.dart';
 import '../screens/Settings/settings.dart';
 
 class ManagerScreen extends StatefulWidget {
-  const ManagerScreen({Key? key}) : super(key: key);
+  const ManagerScreen({Key key}) : super(key: key);
 
   @override
   _ManagerScreenState createState() => _ManagerScreenState();
@@ -22,7 +22,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
+      tokens = prefs.getString("token");
     });
   }
 

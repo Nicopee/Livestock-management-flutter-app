@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class MyParcelOffice extends StatefulWidget {
-  const MyParcelOffice(
-      {Key? key,
-      required this.parcelOfficeCode,
-      required this.parcelOfficeName,
-      required this.parcelOfficeAddress,
-      required this.parcelOfficeHours,
-      required this.parcelOfficeStats,
-      required this.parcelOfficeStatsNumber})
-      : super(key: key);
+  const MyParcelOffice({
+    Key key,
+    this.parcelOfficeCode,
+    this.parcelOfficeName,
+    this.parcelOfficeAddress,
+    this.parcelOfficeHours,
+    this.parcelOfficeStats,
+    this.parcelOfficeStatsNumber,
+  }) : super(key: key);
 
   final String parcelOfficeCode,
       parcelOfficeHours,

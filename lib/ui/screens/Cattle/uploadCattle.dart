@@ -11,7 +11,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 class UploadCattle extends StatefulWidget {
-  const UploadCattle({Key? key}) : super(key: key);
+  const UploadCattle({Key key}) : super(key: key);
 
   @override
   State<UploadCattle> createState() => _UploadCattleState();
@@ -27,7 +27,7 @@ class _UploadCattleState extends State<UploadCattle> {
   final TextEditingController descriptionController = TextEditingController();
 
   String tokens = "";
-  File? imageFile;
+  File imageFile;
   List cattleBreedList = [];
 
   List genderList = [
@@ -43,7 +43,7 @@ class _UploadCattleState extends State<UploadCattle> {
     getCattleBreeds();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      tokens = prefs.getString("token")!;
+      tokens = prefs.getString("token");
     });
   }
 
@@ -193,7 +193,7 @@ class _UploadCattleState extends State<UploadCattle> {
                   child: TextFormField(
                     controller: nameController,
                     onSaved: (value) {
-                      nameController.text = value!;
+                      nameController.text = value;
                     },
                     validator: (text) {
                       if (text == null || text.isEmpty) {
@@ -213,7 +213,7 @@ class _UploadCattleState extends State<UploadCattle> {
                   child: TextFormField(
                     controller: tagNoController,
                     onSaved: (value) {
-                      tagNoController.text = value!;
+                      tagNoController.text = value;
                     },
                     validator: (text) {
                       if (text == null || text.isEmpty) {
@@ -242,7 +242,7 @@ class _UploadCattleState extends State<UploadCattle> {
                   child: TextFormField(
                     controller: weightController,
                     onSaved: (value) {
-                      weightController.text = value!;
+                      weightController.text = value;
                     },
                     validator: (text) {
                       if (text == null || text.isEmpty) {
@@ -294,7 +294,7 @@ class _UploadCattleState extends State<UploadCattle> {
                     keyboardType: TextInputType.multiline,
                     controller: descriptionController,
                     onSaved: (value) {
-                      descriptionController.text = value!;
+                      descriptionController.text = value;
                     },
                     validator: (text) {
                       if (text == null || text.isEmpty) {
@@ -322,7 +322,7 @@ class _UploadCattleState extends State<UploadCattle> {
                         decoration: BoxDecoration(
                           color: Colors.grey,
                           image: DecorationImage(
-                              image: FileImage(imageFile!), fit: BoxFit.cover),
+                              image: FileImage(imageFile), fit: BoxFit.cover),
                           border: Border.all(width: 1, color: Colors.blueGrey),
                           borderRadius: BorderRadius.circular(12.0),
                         ),
@@ -368,9 +368,9 @@ class _UploadCattleState extends State<UploadCattle> {
                           ),
                         ),
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                          if (_formKey.currentState.validate()) {
                             imageFile != null
-                                ? addNewCow(imageFile!)
+                                ? addNewCow(imageFile)
                                 : ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                       content:
@@ -390,7 +390,7 @@ class _UploadCattleState extends State<UploadCattle> {
     );
   }
 
-  void getImage({required ImageSource source}) async {
+  void getImage({ImageSource source}) async {
     final file = await ImagePicker().pickImage(
         source: source,
         maxWidth: 640,
@@ -400,7 +400,7 @@ class _UploadCattleState extends State<UploadCattle> {
 
     if (file?.path != null) {
       setState(() {
-        imageFile = File(file!.path);
+        imageFile = File(file.path);
       });
     }
   }

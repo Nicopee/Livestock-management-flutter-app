@@ -26,11 +26,11 @@ class _ProfilePageState extends State<ProfilePage> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      firstname = prefs.getString("firstname")!;
-      lastname = prefs.getString("lastname")!;
-      contact = prefs.getString("phone_contact")!;
-      email = prefs.getString("email")!;
-      role = prefs.getString("role")!;
+      firstname = prefs.getString("firstname");
+      lastname = prefs.getString("lastname");
+      contact = prefs.getString("phone_contact");
+      email = prefs.getString("email");
+      role = prefs.getString("role");
     });
   }
 

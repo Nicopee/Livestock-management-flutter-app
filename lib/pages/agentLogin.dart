@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AgentLoginPage extends StatefulWidget {
-  const AgentLoginPage({Key? key}) : super(key: key);
+  const AgentLoginPage({Key key}) : super(key: key);
 
   @override
   _AgentLoginPageState createState() => _AgentLoginPageState();
@@ -101,7 +101,7 @@ class _AgentLoginPageState extends State<AgentLoginPage> {
                                 child: TextFormField(
                                   controller: userNameController,
                                   onSaved: (value) {
-                                    userNameController.text = value!;
+                                    userNameController.text = value;
                                   },
                                   validator: (text) {
                                     if (text == null || text.isEmpty) {
@@ -120,7 +120,7 @@ class _AgentLoginPageState extends State<AgentLoginPage> {
                                 child: TextFormField(
                                   controller: passwordController,
                                   onSaved: (value) {
-                                    passwordController.text = value!;
+                                    passwordController.text = value;
                                   },
                                   validator: (text) {
                                     if (text == null || text.isEmpty) {
@@ -212,7 +212,7 @@ class _AgentLoginPageState extends State<AgentLoginPage> {
                                           ),
                                         ),
                                         onPressed: () {
-                                          if (_formKey.currentState!
+                                          if (_formKey.currentState
                                               .validate()) {
                                             userLogin();
                                           }

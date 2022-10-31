@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'chooserScreen.dart';
 
 class SplashScreen extends StatefulWidget {
-  SplashScreen({Key? key, required this.title}) : super(key: key);
+  SplashScreen({Key key, this.title}) : super(key: key);
 
   final String title;
 

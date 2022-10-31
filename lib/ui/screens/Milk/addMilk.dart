@@ -8,7 +8,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Milk extends StatefulWidget {
-  const Milk({Key? key}) : super(key: key);
+  const Milk({Key key}) : super(key: key);
 
   @override
   State<Milk> createState() => _MilkState();
@@ -19,7 +19,7 @@ class _MilkState extends State<Milk> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      role = prefs.getString("role")!;
+      role = prefs.getString("role");
     });
   }
 
@@ -70,7 +70,7 @@ class _MilkState extends State<Milk> {
               child: ListView.builder(
                   itemCount: _data?.length,
                   itemBuilder: (context, index) {
-                    final incomeData = _data![index];
+                    final incomeData = _data[index];
                     return GestureDetector(
                       onTap: () {},
                       child: Padding(
