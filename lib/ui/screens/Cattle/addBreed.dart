@@ -43,7 +43,7 @@ class _AddBreedState extends State<AddBreed> {
       _isLoading = true;
     });
 
-    var _url = Uri.parse(constants[0].url + 'cattleBreed');
+    var _url = Uri.parse(baseURL + 'cattleBreed');
     final response = await http.post(_url,
         body: {
           'breed': breedController.text,

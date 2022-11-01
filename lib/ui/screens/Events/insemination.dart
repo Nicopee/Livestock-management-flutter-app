@@ -52,7 +52,7 @@ class _InseminationState extends State<Insemination> {
       };
 
   Future<String> getCattle() async {
-    var _url = Uri.parse(constants[0].url + 'cattle');
+    var _url = Uri.parse(baseURL + 'cattle');
     final response = await http.get(_url, headers: newheaders);
     final String responseData = response.body;
     var data = json.decode(response.body);
@@ -67,7 +67,7 @@ class _InseminationState extends State<Insemination> {
       _isLoading = true;
     });
 
-    var _url = Uri.parse(constants[0].url + 'inseminations');
+    var _url = Uri.parse(baseURL + 'inseminations');
     final response = await http.post(_url,
         body: {
           'insemination_date': _selectedDate.toString(),

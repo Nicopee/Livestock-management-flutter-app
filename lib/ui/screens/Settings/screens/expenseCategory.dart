@@ -38,7 +38,7 @@ class _ExpenseCategoriesState extends State<ExpenseCategories> {
       };
 
   Future<ExpenseTypes> getExpenseCategories() async {
-    var _url = Uri.parse(constants[0].url + 'expenseTypes');
+    var _url = Uri.parse(baseURL + 'expenseTypes');
     final response = await http.get(_url, headers: headers);
     final String responseData = response.body;
     return expenseTypesFromJson(responseData);

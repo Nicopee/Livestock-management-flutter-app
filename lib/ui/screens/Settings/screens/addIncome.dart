@@ -43,7 +43,7 @@ class _AddIncomeState extends State<AddIncome> {
       _isLoading = true;
     });
 
-    var _url = Uri.parse(constants[0].url + 'incomeTypes');
+    var _url = Uri.parse(baseURL + 'incomeTypes');
     final response = await http.post(_url,
         body: {
           'income_type': incomeController.text,

@@ -58,7 +58,7 @@ class _UploadCattleState extends State<UploadCattle> {
       };
 
   Future<String> getCattleBreeds() async {
-    var _url = Uri.parse(constants[0].url + 'cattleBreed');
+    var _url = Uri.parse(baseURL + 'cattleBreed');
     final response = await http.get(_url, headers: newheaders);
     final String responseData = response.body;
     var data = json.decode(response.body);
@@ -72,7 +72,7 @@ class _UploadCattleState extends State<UploadCattle> {
     setState(() {
       _isLoading = true;
     });
-    var _url = Uri.parse(constants[0].url + 'cattle');
+    var _url = Uri.parse(baseURL + 'cattle');
     var dio = Dio();
     dio.options.headers = headers;
     String fileName = photoFile.path.split('/').last;

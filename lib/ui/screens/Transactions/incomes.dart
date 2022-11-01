@@ -39,7 +39,7 @@ class _IncomesState extends State<Incomes> {
       };
 
   Future<IncomeModel> getAlIncomes() async {
-    var _url = Uri.parse(constants[0].url + 'incomes');
+    var _url = Uri.parse(baseURL + 'incomes');
     final response = await http.get(_url, headers: headers);
     final String responseData = response.body;
     return incomeModelFromJson(responseData);

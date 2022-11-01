@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      isLogged = prefs.getBool("logged");
+      isLogged = prefs.getBool("logged") ?? false;
     });
   }
 
@@ -53,6 +53,7 @@ class _MyAppState extends State<MyApp> {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'Poppins',
         ),
-        home: isLogged ? const ManagerScreen() : const ChooseUser());
+        home: const ManagerScreen());
+    // home: isLogged ? const ManagerScreen() : const ChooseUser());
   }
 }

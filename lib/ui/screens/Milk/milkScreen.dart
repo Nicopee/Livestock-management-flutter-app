@@ -52,7 +52,7 @@ class _MilkScreenState extends State<MilkScreen> {
       };
 
   Future<String> getCattle() async {
-    var _url = Uri.parse(constants[0].url + 'cattle');
+    var _url = Uri.parse(baseURL + 'cattle');
     final response = await http.get(_url, headers: newheaders);
     final String responseData = response.body;
     var data = json.decode(response.body);
@@ -67,7 +67,7 @@ class _MilkScreenState extends State<MilkScreen> {
       _isLoading = true;
     });
 
-    var _url = Uri.parse(constants[0].url + 'milk');
+    var _url = Uri.parse(baseURL + 'milk');
     final response = await http.post(_url,
         body: {
           'milking_date': _selectedDate.toString(),

@@ -34,7 +34,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     setState(() {
       _isLoading = true;
     });
-    var _url = Uri.parse(constants[0].url + 'managers');
+    var _url = Uri.parse(baseURL + 'managers');
     final response = await http.post(_url, body: {
       'firstname': firstnameController.text,
       'lastname': lastnameController.text,

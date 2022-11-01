@@ -61,7 +61,7 @@ class _AddIncomesState extends State<AddIncomes> {
       _isLoading = true;
     });
 
-    var _url = Uri.parse(constants[0].url + 'incomes');
+    var _url = Uri.parse(baseURL + 'incomes');
     final response = await http.post(_url,
         body: {
           'income_date': _selectedDate.toString(),
@@ -113,7 +113,7 @@ class _AddIncomesState extends State<AddIncomes> {
   }
 
   Future<String> getIcomeTypes() async {
-    var _url = Uri.parse(constants[0].url + 'incomeTypes');
+    var _url = Uri.parse(baseURL + 'incomeTypes');
     final response = await http.get(_url, headers: headers);
     final String responseData = response.body;
     var data = json.decode(response.body);

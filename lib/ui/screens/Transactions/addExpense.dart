@@ -61,7 +61,7 @@ class _AddExpensesState extends State<AddExpenses> {
       _isLoading = true;
     });
 
-    var _url = Uri.parse(constants[0].url + 'expenses');
+    var _url = Uri.parse(baseURL + 'expenses');
     final response = await http.post(_url,
         body: {
           'expense_date': _selectedDate.toString(),
@@ -113,7 +113,7 @@ class _AddExpensesState extends State<AddExpenses> {
   }
 
   Future<String> getIcomeTypes() async {
-    var _url = Uri.parse(constants[0].url + 'expenseTypes');
+    var _url = Uri.parse(baseURL + 'expenseTypes');
     final response = await http.get(_url, headers: headers);
     final String responseData = response.body;
     var data = json.decode(response.body);

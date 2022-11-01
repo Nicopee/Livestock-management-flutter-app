@@ -32,7 +32,7 @@ class _AgentLoginPageState extends State<AgentLoginPage> {
       _isLoading = true;
     });
 
-    var _url = Uri.parse(constants[0].url + 'admin/login');
+    var _url = Uri.parse(baseURL + 'admin/login');
     final response = await http.post(_url, body: {
       'username': userNameController.text,
       'password': passwordController.text,

@@ -51,7 +51,7 @@ class _ChooseUserState extends State<ChooseUser> {
                         child: Text("Farm Owner",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 15,
                                 decoration: TextDecoration.none)),
                       ),
                     ),
@@ -81,7 +81,7 @@ class _ChooseUserState extends State<ChooseUser> {
                         child: Text("Farm Manager",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 15,
                                 decoration: TextDecoration.none)),
                       ),
                     ),

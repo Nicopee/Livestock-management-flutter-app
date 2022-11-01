@@ -35,7 +35,7 @@ class _MilkState extends State<Milk> {
       };
 
   Future<MilkModel> getMilk() async {
-    var _url = Uri.parse(constants[0].url + 'milk');
+    var _url = Uri.parse(baseURL + 'milk');
     final response = await http.get(_url, headers: headers);
     final String responseData = response.body;
     return milkModelFromJson(responseData);

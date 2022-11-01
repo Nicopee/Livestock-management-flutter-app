@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
       _isLoading = true;
     });
 
-    var _url = Uri.parse(constants[0].url + 'manager/login');
+    var _url = Uri.parse(baseURL + 'manager/login');
     final response = await http.post(_url, body: {
       'username': userNameController.text,
       'password': passwordController.text,

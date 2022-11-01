@@ -36,7 +36,7 @@ class _EventsState extends State<Events> {
       };
 
   Future<InseminationModel> getInsemination() async {
-    var _url = Uri.parse(constants[0].url + 'inseminations');
+    var _url = Uri.parse(baseURL + 'inseminations');
     final response = await http.get(_url, headers: headers);
     final String responseData = response.body;
     return inseminationModelFromJson(responseData);

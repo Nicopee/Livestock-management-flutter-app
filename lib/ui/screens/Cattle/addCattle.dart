@@ -36,7 +36,7 @@ class _CattleState extends State<Cattle> {
       };
 
   Future<CattleModel> getCattle() async {
-    var _url = Uri.parse(constants[0].url + 'cattle');
+    var _url = Uri.parse(baseURL + 'cattle');
     final response = await http.get(_url, headers: headers);
     final String responseData = response.body;
     return cattleModelFromJson(responseData);

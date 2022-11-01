@@ -38,24 +38,12 @@ class _ManagerScreenState extends State<ManagerScreen> {
         "Authorization": "Bearer $tokens",
       };
 
-  // Future<Packages> getPackages(String package) async {
-  //   var _url;
-  //   if (package == "all") {
-  //     _url = Uri.parse(constants[0].url + 'packages');
-  //   } else {
-  //     _url = Uri.parse(constants[0].url + 'package/' + package);
-  //   }
-  //   final response = await http.get(_url, headers: headers);
-  //   final String responseData = response.body;
-  //   return packagesFromJson(responseData);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Livestock Manager",
+          "Farm Manager",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         elevation: 0.5,
@@ -100,7 +88,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
                 child: Container(
                   alignment: Alignment.bottomLeft,
                   child: const Text(
-                    "Livestock Manager",
+                    "Farm Manager",
                     style: TextStyle(
                         fontSize: 25,
                         color: Colors.black,
@@ -382,6 +370,97 @@ class _ManagerScreenState extends State<ManagerScreen> {
                   ),
                   const Text(
                     'Insemination',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  )
+                ],
+              )),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Get.to(
+                () => const TransactionScreen(),
+                fullscreenDialog: true,
+                transition: Transition.zoom,
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 4,
+                    offset: Offset(4, 8), // Shadow position
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(8),
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.fence,
+                      color: Colors.yellow,
+                    ),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'Feeds',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  )
+                ],
+              )),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Get.to(
+                () => const Events(),
+                fullscreenDialog: true,
+                transition: Transition.zoom,
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                // ignore: prefer_const_literals_to_create_immutables
+                boxShadow: [
+                  const BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 4,
+                    offset: Offset(4, 8), // Shadow position
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(8),
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.kayaking,
+                      color: Colors.yellow,
+                    ),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'Calves',
                     style: TextStyle(
                       fontSize: 18,
                     ),
