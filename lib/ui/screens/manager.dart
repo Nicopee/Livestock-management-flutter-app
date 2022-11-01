@@ -6,6 +6,7 @@ import '../screens/Cattle/addCattle.dart';
 import '../screens/Milk/addMilk.dart';
 import '../screens/Events/addEvent.dart';
 import '../screens/Settings/settings.dart';
+import '../screens/Feeds/feeds_list.dart';
 
 class ManagerScreen extends StatefulWidget {
   const ManagerScreen({Key key}) : super(key: key);
@@ -381,7 +382,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
           InkWell(
             onTap: () {
               Get.to(
-                () => const TransactionScreen(),
+                () => const FeedList(),
                 fullscreenDialog: true,
                 transition: Transition.zoom,
               );

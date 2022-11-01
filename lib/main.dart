@@ -53,7 +53,6 @@ class _MyAppState extends State<MyApp> {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'Poppins',
         ),
-        home: const ManagerScreen());
-    // home: isLogged ? const ManagerScreen() : const ChooseUser());
+        home: isLogged ? const ManagerScreen() : const ChooseUser());
   }
 }
