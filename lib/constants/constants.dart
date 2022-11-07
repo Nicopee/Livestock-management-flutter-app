@@ -30,4 +30,4 @@ const MaterialColor materialColor = MaterialColor(
     900: Color(0xffFF4265),
   },
 );
-String baseURL = 'http://192.168.43.46/v1/livestock-api/public/api';
+String baseURL = 'http://192.168.0.101/v1/livestock-api/public/api/';

@@ -7,6 +7,7 @@ import '../screens/Milk/addMilk.dart';
 import '../screens/Events/addEvent.dart';
 import '../screens/Settings/settings.dart';
 import '../screens/Feeds/feeds_list.dart';
+import 'package:livestockapp/ui/charts.dart';
 
 class ManagerScreen extends StatefulWidget {
   const ManagerScreen({Key key}) : super(key: key);
@@ -517,42 +518,51 @@ class _ManagerScreenState extends State<ManagerScreen> {
               )),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              // ignore: prefer_const_literals_to_create_immutables
-              boxShadow: [
-                const BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 4,
-                  offset: Offset(4, 8), // Shadow position
-                ),
-              ],
+          GestureDetector(
+            onTap: () {
+              Get.to(
+                () => const ChartReport(),
+                fullscreenDialog: true,
+                transition: Transition.zoom,
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                // ignore: prefer_const_literals_to_create_immutables
+                boxShadow: [
+                  const BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 4,
+                    offset: Offset(4, 8), // Shadow position
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(8),
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.bar_chart_sharp,
+                      color: Colors.yellow,
+                    ),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'Reports',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  )
+                ],
+              )),
             ),
-            padding: const EdgeInsets.all(8),
-            child: Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.bar_chart_sharp,
-                    color: Colors.yellow,
-                  ),
-                  onPressed: () {},
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  'Reports',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                )
-              ],
-            )),
           ),
         ],
       ),

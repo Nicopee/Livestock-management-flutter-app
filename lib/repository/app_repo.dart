@@ -15,7 +15,7 @@ class AppRepo {
     Dio dio = Dio(baseOptions);
 
     try {
-      var response = await dio.request('/latest', queryParameters: {
+      var response = await dio.request('latest', queryParameters: {
         'platform': Platform.isAndroid ? 'android' : 'ios',
         'type': 'customer'
       });

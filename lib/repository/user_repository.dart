@@ -18,7 +18,7 @@ class UserRepository {
     Dio dio = Dio(baseOptions);
 
     try {
-      final response = await dio.request('/client/login',
+      final response = await dio.request('manager/login',
           data: {'username': email, 'password': password});
       var results = {
         'user': User.fromJson(response.data['user']),
@@ -40,7 +40,7 @@ class UserRepository {
     dio.interceptors.add(NetworkInterceptor(dio));
 
     try {
-      await dio.request('/customers/$userId', data: user);
+      await dio.request('customers/$userId', data: user);
     } catch (_) {
       rethrow;
     }
@@ -56,7 +56,7 @@ class UserRepository {
     dio.interceptors.add(NetworkInterceptor(dio));
 
     try {
-      await dio.request('/feedback', data: {'feedback': message});
+      await dio.request('feedback', data: {'feedback': message});
     } catch (_) {
       rethrow;
     }
@@ -73,7 +73,7 @@ class UserRepository {
     dio.interceptors.add(NetworkInterceptor(dio));
 
     try {
-      await dio.request('/customer/change-pass',
+      await dio.request('customer/change-pass',
           data: {'current_password': oldPassword, 'password': newPassword});
     } catch (_) {
       rethrow;
@@ -88,7 +88,7 @@ class UserRepository {
     Dio dio = Dio(baseOptions);
 
     try {
-      await dio.post('/customers', data: user);
+      await dio.post('customers', data: user);
     } catch (_) {
       rethrow;
     }
@@ -103,7 +103,7 @@ class UserRepository {
     Dio dio = Dio(baseOptions);
 
     try {
-      await dio.request('/customer/forgot-password', data: {'email': email});
+      await dio.request('customer/forgot-password', data: {'email': email});
     } catch (_) {
       rethrow;
     }
@@ -118,7 +118,7 @@ class UserRepository {
     Dio dio = Dio(baseOptions);
 
     try {
-      final response = await dio.request('/customers/refresh-token',
+      final response = await dio.request('customers/refresh-token',
           data: {'refresh_token': refreshToken});
 
       return AccessToken.fromJson(response.data);

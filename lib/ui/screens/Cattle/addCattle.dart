@@ -7,6 +7,7 @@ import '../../../models/cattleModel.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:shared_preferences/shared_preferences.dart';
 import './cattleDetails.dart';
+import 'package:intl/intl.dart';
 
 class Cattle extends StatefulWidget {
   const Cattle({Key key}) : super(key: key);
@@ -92,7 +93,7 @@ class _CattleState extends State<Cattle> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 24, vertical: 16),
                         child: Container(
-                          height: 100,
+                          height: 120,
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
@@ -159,9 +160,12 @@ class _CattleState extends State<Cattle> {
                                         width: 20,
                                       ),
                                       Text(
-                                        timeago.format(incomeData.createdAt),
-                                        style: const TextStyle(fontSize: 15),
-                                      ),
+                                          DateFormat('EEEE, d MMM, yyyy')
+                                              .format(incomeData.createdAt),
+                                          style: const TextStyle(
+                                              fontFamily: 'Montserrat',
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500))
                                     ],
                                   ),
                                 ],

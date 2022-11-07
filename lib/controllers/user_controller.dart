@@ -67,9 +67,6 @@ class UserController extends ChangeNotifier {
       sharedPreferences.setString('user', jsonEncode(user));
       sharedPreferences.setString('token', jsonEncode(accessToken));
       loader.remove();
-      Get.toNamed(
-        '/index',
-      );
       if (goTo == null) {
         Get.close(1);
       } else {

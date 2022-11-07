@@ -40,7 +40,7 @@ class FeedRepository {
 
     try {
       final response = await dio
-          .request('/feeds', data: {'name': name, 'description': description});
+          .request('feeds', data: {'name': name, 'description': description});
       return response.data;
     } catch (e) {
       rethrow;

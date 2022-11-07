@@ -13,7 +13,7 @@ class CalvesRepository {
     Dio dio = Dio(baseOptions);
 
     try {
-      final response = await dio.request('/calfs',
+      final response = await dio.request('calfs',
           queryParameters: {'page': page, 'per_page': perPage});
 
       List<Calf> calves = [];
