@@ -1,7 +1,6 @@
 import 'package:livestockapp/constants/constants.dart';
 import 'package:livestockapp/models/calf.dart';
 import 'package:dio_http/dio_http.dart';
-import '../middleware/network_interceptor.dart';
 
 class CalvesRepository {
   static Future<List<Calf>> getCalves(int page, int perPage) async {

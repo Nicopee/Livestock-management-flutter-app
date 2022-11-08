@@ -21,7 +21,7 @@ class _MilkScreenState extends State<MilkScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final TextEditingController totalMilkController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  String selectedCow = '11';
+  String selectedCow = '1';
   List cattleList = [];
   DateTime _selectedDate = DateTime.now();
 

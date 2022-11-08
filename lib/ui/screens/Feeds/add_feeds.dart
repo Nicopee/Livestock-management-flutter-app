@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../models/milkModel.dart';
-import 'package:http/http.dart' as http;
+import 'package:livestockapp/common/theme_helper.dart';
+import 'package:livestockapp/controllers/feed_controller.dart';
+import 'package:provider/provider.dart';
 import 'package:livestockapp/constants/constants.dart';
-import 'package:timeago/timeago.dart' as timeago;
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
+import './feeds_list.dart';
 
 class AddFeed extends StatefulWidget {
   const AddFeed({Key key}) : super(key: key);
@@ -13,11 +16,18 @@ class AddFeed extends StatefulWidget {
 }
 
 class _AddFeedState extends State<AddFeed> {
-  String role = "";
+  final TextEditingController feedController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  var formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
+
+  String tokens = "";
+
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      role = prefs.getString("role");
+      tokens = prefs.getString("token");
     });
   }
 
@@ -28,172 +38,129 @@ class _AddFeedState extends State<AddFeed> {
   }
 
   Map<String, String> get headers => {
-        "Content-Type": "application/json",
         "Accept": "application/json",
+        "Authorization": "Bearer $tokens",
       };
 
-  Future<MilkModel> getMilk() async {
-    var _url = Uri.parse(baseURL + 'milk');
-    final response = await http.get(_url, headers: headers);
+  Future addNewFeed() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    var _url = Uri.parse(baseURL + 'feeds');
+    final response = await http.post(_url,
+        body: {
+          'name': descriptionController.text,
+          'description': descriptionController.text,
+        },
+        headers: headers);
     final String responseData = response.body;
-    return milkModelFromJson(responseData);
+    if (response.statusCode == 200) {
+      Get.to(() => const FeedList(),
+          fullscreenDialog: true,
+          transition: Transition.zoom,
+          duration: const Duration(microseconds: 500000));
+      setState(() {
+        _isLoading = false;
+      });
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+      Get.snackbar('Error  ', 'Network Error');
+    }
+
+    return responseData;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Visibility(
-        visible: role == "manager" ? true : false,
-        child: FloatingActionButton.extended(
-            backgroundColor: Colors.deepOrange,
-            onPressed: () {},
-            label: const Text('Add Milk')),
-      ),
       appBar: AppBar(
-          title: const Text('Milk',
+          title: const Text('Add Feed',
               style: TextStyle(
                   fontFamily: 'Montserrat', fontWeight: FontWeight.w500))),
-      body: FutureBuilder<MilkModel>(
-        future: getMilk(),
-        builder: (context, snapshot) {
-          final _data = snapshot.data?.data;
-          if (snapshot.hasData) {
-            return SizedBox(
-              height: 400,
-              child: ListView.builder(
-                  itemCount: _data?.length,
-                  itemBuilder: (context, index) {
-                    final incomeData = _data[index];
-                    return GestureDetector(
-                      onTap: () {},
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 16),
-                        child: Container(
-                          height: 140,
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            color: Theme.of(context).backgroundColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Theme.of(context).shadowColor,
-                                spreadRadius: 0,
-                                blurRadius: 10,
-                                offset: const Offset(0, 0),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        'Total Milk :',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      Text(
-                                        incomeData.totalMilk.toString() +
-                                            ' ' +
-                                            'Litres',
-                                        style: const TextStyle(fontSize: 15),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        'Cow Milked :',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      Text(
-                                        incomeData.cattle.name,
-                                        style: const TextStyle(fontSize: 15),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 3,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        'Cow Breed :',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      Text(
-                                        incomeData.cattle.breed.breed,
-                                        style: const TextStyle(fontSize: 15),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 3,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        'Milk date :',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      Text(
-                                        timeago.format(incomeData.milkingDate),
-                                        style: const TextStyle(fontSize: 15),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        'Description :',
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      Text(
-                                        incomeData.description,
-                                        style: const TextStyle(fontSize: 15),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
+      body: SingleChildScrollView(
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  child: TextFormField(
+                    controller: feedController,
+                    onSaved: (value) {
+                      feedController.text = value;
+                    },
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'feed is required';
+                      }
+                      return null;
+                    },
+                    decoration: ThemeHelper()
+                        .textInputDecoration('Feed', 'Enter feed received'),
+                  ),
+                  decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  child: TextFormField(
+                    maxLines: 4,
+                    keyboardType: TextInputType.multiline,
+                    controller: descriptionController,
+                    onSaved: (value) {
+                      descriptionController.text = value;
+                    },
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'description is required';
+                      }
+                      return null;
+                    },
+                    decoration: ThemeHelper().textInputDecoration(
+                        'Description', 'Enter description'),
+                  ),
+                  decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                ),
+              ),
+              const SizedBox(height: 30.0),
+              _isLoading
+                  ? const CircularProgressIndicator()
+                  : Container(
+                      decoration: ThemeHelper().buttonBoxDecoration(context),
+                      child: ElevatedButton(
+                        style: ThemeHelper().buttonStyle(),
+                        // ignore: prefer_const_constructors
+                        child: Padding(
+                          // ignore: prefer_const_constructors
+                          padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
+                          // ignore: prefer_const_constructors
+                          child: Text(
+                            'Save',
+                            style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
                           ),
                         ),
+                        onPressed: () {
+                          if (formKey.currentState.validate()) {
+                            formKey.currentState.save();
+                            addNewFeed();
+                          }
+                        },
                       ),
-                    );
-                  }),
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+                    ),
+            ],
+          ),
+        ),
       ),
     );
   }

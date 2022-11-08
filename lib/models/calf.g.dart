@@ -11,7 +11,7 @@ Calf _$CalfFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     tagNo: json['tag_no'] as String,
     createdAt: json['created_at'] as String,
-    weight: json['weight'] as int,
+    weight: json['weight'] as String,
     dateOfBirth: json['date_of_birth'] as String,
     cattleImage: json['cattle_image'] as String,
     description: json['description'] as String,

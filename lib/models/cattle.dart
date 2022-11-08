@@ -10,7 +10,7 @@ class Cattle {
   String name;
   @JsonKey(name: 'tag_no')
   String tagNo;
-  int weight;
+  String weight;
   @JsonKey(name: 'date_of_birth')
   String dateOfBirth;
   @JsonKey(name: 'cattle_image')

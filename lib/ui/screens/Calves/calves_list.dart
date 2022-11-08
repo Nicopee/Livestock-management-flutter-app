@@ -9,14 +9,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 import './add_calves.dart';
 
-class FeedList extends StatefulWidget {
-  const FeedList({Key key}) : super(key: key);
+class CalvesList extends StatefulWidget {
+  const CalvesList({Key key}) : super(key: key);
 
   @override
-  State<FeedList> createState() => _FeedListState();
+  State<CalvesList> createState() => _CalvesListState();
 }
 
-class _FeedListState extends State<FeedList> {
+class _CalvesListState extends State<CalvesList> {
   String role = "";
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -47,12 +47,17 @@ class _FeedListState extends State<FeedList> {
               visible: role == "manager" ? true : false,
               child: FloatingActionButton.extended(
                   backgroundColor: Colors.deepOrange,
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => const AddCalf(),
+                        fullscreenDialog: true,
+                        transition: Transition.zoom,
+                        duration: const Duration(microseconds: 500000));
+                  },
                   label: const Text('Add Calf')),
             ),
             appBar: AppBar(
               title: const Text(
-                'Feeds',
+                'Calves',
                 style: TextStyle(
                     fontFamily: 'Montserrat', fontWeight: FontWeight.w500),
               ),
@@ -159,6 +164,81 @@ class _FeedListState extends State<FeedList> {
                                                           .textTheme
                                                           .bodyText2,
                                                     ),
+                                                    const SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Container(
+                                                          height: 100,
+                                                          width: 100,
+                                                          alignment: Alignment
+                                                              .bottomLeft,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      25,
+                                                                  vertical: 10),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            image: DecorationImage(
+                                                                image: NetworkImage(model
+                                                                    .calves[
+                                                                        index]
+                                                                    .cattleImage),
+                                                                fit: BoxFit
+                                                                    .fill),
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20.0),
+                                                            boxShadow: const [
+                                                              BoxShadow(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  offset:
+                                                                      Offset(
+                                                                          0.0,
+                                                                          2.0),
+                                                                  blurRadius:
+                                                                      6.0),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        const Text('Weight'),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(model.calves[index]
+                                                            .weight),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Column(
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                const Text(
+                                                                    'Offspring Of:'),
+                                                                const SizedBox(
+                                                                  width: 3,
+                                                                ),
+                                                                Text(model
+                                                                    .calves[
+                                                                        index]
+                                                                    .cattle
+                                                                    .name)
+                                                              ],
+                                                            )
+                                                          ],
+                                                        )
+                                                      ],
+                                                    )
                                                   ],
                                                 ),
                                                 const Icon(

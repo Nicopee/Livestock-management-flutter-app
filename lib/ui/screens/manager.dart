@@ -6,6 +6,7 @@ import '../screens/Cattle/addCattle.dart';
 import '../screens/Milk/addMilk.dart';
 import '../screens/Events/addEvent.dart';
 import '../screens/Settings/settings.dart';
+import '../screens/Calves/calves_list.dart';
 import '../screens/Feeds/feeds_list.dart';
 import 'package:livestockapp/ui/charts.dart';
 
@@ -428,7 +429,7 @@ class _ManagerScreenState extends State<ManagerScreen> {
           GestureDetector(
             onTap: () {
               Get.to(
-                () => const Events(),
+                () => const CalvesList(),
                 fullscreenDialog: true,
                 transition: Transition.zoom,
               );

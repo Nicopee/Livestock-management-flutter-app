@@ -77,7 +77,7 @@ class _MilkState extends State<Milk> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 24, vertical: 16),
                         child: Container(
-                          height: 140,
+                          height: 160,
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),

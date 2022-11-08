@@ -1,8 +1,9 @@
 import 'package:livestockapp/models/feed.dart';
 import 'package:livestockapp/repository/feed_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:livestockapp/helpers/helpers.dart';
 
 class FeedController extends ChangeNotifier {
   List<Feed> feeds = [];
@@ -53,6 +54,23 @@ class FeedController extends ChangeNotifier {
 
     isLoading = false;
     notifyListeners();
+  }
+
+  void addFeed(String name, String description) async {
+    OverlayEntry loader = MethodHelpers.overlayLoader();
+    try {
+      Overlay.of(Get.overlayContext).insert(loader);
+
+      await FeedRepository.addFeed(name, description);
+
+      loader.remove();
+      Get.offNamed('/success',
+          arguments: {'message': 'Your feed has been added.'});
+    } catch (err) {
+      print(err);
+      loader.remove();
+      MethodHelpers.dioErrorHandler(err);
+    }
   }
 
   @override

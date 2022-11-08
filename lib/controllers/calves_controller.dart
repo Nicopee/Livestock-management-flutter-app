@@ -48,6 +48,7 @@ class CalvesController extends ChangeNotifier {
 
       calves.addAll(results);
     } catch (e) {
+      print(e);
       exception = e;
     }
 
